@@ -1,4 +1,4 @@
-import Student from "../model/studentModel"
+import Student from "../model/studentModel.js"
 
 export const fetchStudent = async (req, res) => {
 

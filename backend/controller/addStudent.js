@@ -18,6 +18,7 @@ export const addStudent = async (req, res) => {
             course
         })
 
+        
         if (newStudent) {
             await newStudent.save();
             console.log(`Student created ${newStudent.email}`);
