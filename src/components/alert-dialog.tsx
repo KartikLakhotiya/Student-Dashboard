@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 
 export function AlertDialogDemo() {
     return (
-        <div className="flex flex-col w-32 ml-auto mr-auto mt-8">
+        <div className="flex flex-col w-32 mt-8 ml-20">
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline">Show Dialog</Button>
