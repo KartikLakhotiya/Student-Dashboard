@@ -1,7 +1,7 @@
 import './App.css'
-import { ModeToggle } from './components/mode-toggle'
+import { AlertDialogDemo } from './components/alert-dialog'
+import { CarouselSize } from './components/hero/carousel'
 import Navbar from './components/navbar'
-import { Button } from './components/ui/button'
 import { ThemeProvider } from "@/components/theme-provider"
 
 function App() {
@@ -9,6 +9,8 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Navbar/>
+      <CarouselSize/>
+      <AlertDialogDemo/>
     </ThemeProvider>
   )
 }
