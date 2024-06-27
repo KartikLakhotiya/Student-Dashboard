@@ -1,6 +1,5 @@
 import * as React from "react"
 import { useState } from "react"
-
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -20,6 +19,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
+import { error } from "console"
 
 
 export function AddStudent() {
@@ -33,7 +33,8 @@ export function AddStudent() {
     
 
     const { toast } = useToast()
-    const submit = () => {
+
+    const submit = async() => {
         
         //validations
         if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
@@ -51,10 +52,38 @@ export function AddStudent() {
             return
         }
         
-        console.log(fullname,username,email,course,password)
-        toast({
-          title: "Student Added in the Database",
-        })
+        const data = {
+            'fullname': fullname,
+            'username': username,
+            'email': email,
+            'password': password,
+            'course': course,
+        };
+
+        const response = await fetch('http://localhost:5000/api/auth/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        const a = response.json()
+        console.log(a)
+
+        if(response.ok){
+            toast({
+              title: "Student Added in the Database",
+            })
+        }
+        else{
+            console.log(`error`)
+            toast({
+                variant:"destructive",
+                title: "Error Occured.",
+              })
+        }
+        
       }
     return (
         <Card className="w-[450px] mr-auto ml-auto mt-8 ">
