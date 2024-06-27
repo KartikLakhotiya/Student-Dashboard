@@ -69,7 +69,7 @@ export function FetchStudent() {
 
 
     return (
-        <div className="flex mx-20">
+        <div className="flex mx-32">
             <Card className="w-[450px] mr-auto ml-auto mt-8 ">
                 <CardHeader>
                     <CardTitle>Fetch Student</CardTitle>
@@ -96,7 +96,7 @@ export function FetchStudent() {
 
             {
                 student && (
-                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto">
+                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto pt-4 pb-4">
                         <CardHeader>
                             <CardTitle>Student Found</CardTitle>
                             <CardDescription>Fetched details of student from the Database.</CardDescription>

@@ -5,7 +5,6 @@ export const fetchStudent = async (req, res) => {
 
     const { username, password } = req.body
     const student = await Student.findOne({ username })
-    console.log(student)
     const isPassCorrect = await bcrypt.compare(password, student?.password || "")
     if (!student || !isPassCorrect) {
         return res.status(400).json({ error: "Invalid username or Password." })
