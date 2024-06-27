@@ -28,12 +28,11 @@ export function FetchStudent() {
         //validations
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
+        
+        }
 
+        
 
-
-
-
-    }
     return (
         <div className="flex">
             <Card className="w-[450px] mr-auto ml-auto mt-8 ">
