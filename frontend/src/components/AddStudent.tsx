@@ -1,4 +1,3 @@
-import * as React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,8 +18,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
-import { error } from "console"
-
 
 export function AddStudent() {
 
