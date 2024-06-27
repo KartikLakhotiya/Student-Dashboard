@@ -1,18 +1,16 @@
 import './App.css'
-import { AlertDialogDemo } from './components/alert-dialog'
-import { CardWithForm } from './components/card'
-import { CarouselSize } from './components/hero/carousel'
+import { AddStudent } from './components/AddStudent'
 import Navbar from './components/navbar'
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from './components/ui/toaster'
 
 function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Navbar />
-      <CarouselSize />
-      <AlertDialogDemo />
-      <CardWithForm />
+      <AddStudent />
+      <Toaster/>
     </ThemeProvider>
   )
 }
