@@ -17,7 +17,7 @@ export function FetchStudent() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [first, setfirst] = useState(false)
+    const [student, setStudent] = useState<any>(null);
 
 
 
@@ -28,13 +28,48 @@ export function FetchStudent() {
         //validations
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
-        
+            
+        const data = {
+            "username": username,
+            "password": password
         }
 
-        
+        const response = await fetch('http://localhost:5000/api/auth/fetch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+
+        if(response.ok){
+            toast({
+                title: "Student Found in the Database",
+              })
+        }
+        else{
+            console.log(`error`)
+            toast({
+                variant:"destructive",
+                title: "Error Occured.",
+              })
+        }
+        const fetchedStudent = response.json();
+        fetchedStudent.then((obj) => {
+            console.log(obj)
+            setStudent(obj)
+        }).catch(err => console.log(err))
+
+        console.log('student',student)
+    }
+
+
+    
+
+
 
     return (
-        <div className="flex">
+        <div className="flex mx-20">
             <Card className="w-[450px] mr-auto ml-auto mt-8 ">
                 <CardHeader>
                     <CardTitle>Fetch Student</CardTitle>
@@ -60,24 +95,25 @@ export function FetchStudent() {
             </Card>
 
             {
-                first && <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto">
-                <CardHeader>
-                    <CardTitle>Student Found</CardTitle>
-                    <CardDescription>Fetched details of student from the Database.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    
-                        <div className="grid w-full items-center">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name" className="text-lg">Full Name : </Label>
-                                <Label htmlFor="name" className="text-lg">Username : </Label>
-                                <Label htmlFor="name" className="text-lg">Email : </Label>
-                                <Label htmlFor="name" className="text-lg">Course : </Label>
+                student && (
+                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto">
+                        <CardHeader>
+                            <CardTitle>Student Found</CardTitle>
+                            <CardDescription>Fetched details of student from the Database.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+
+                            <div className="grid w-full items-center">
+                                <div className="flex flex-col space-y-1.5">
+                                    <Label htmlFor="name" className="text-lg">Full Name : {student.fullname}</Label>
+                                    <Label htmlFor="name" className="text-lg">Username : {student.username}</Label>
+                                    <Label htmlFor="name" className="text-lg">Email : {student.email}</Label>
+                                    <Label htmlFor="name" className="text-lg">Course : {student.course}</Label>
+                                </div>
                             </div>
-                        </div>
-                    
-                </CardContent>
-            </Card>
+
+                        </CardContent>
+                    </Card>)
             }
         </div>
     )

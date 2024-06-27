@@ -1,24 +1,23 @@
 import Student from "../model/studentModel.js"
+import bcrypt from 'bcrypt'
 
 export const fetchStudent = async (req, res) => {
 
     const { username, password } = req.body
-    const student = await Student.findOne({ username }).select("-password")
+    const student = await Student.findOne({ username })
+    console.log(student)
     const isPassCorrect = await bcrypt.compare(password, student?.password || "")
     if (!student || !isPassCorrect) {
-        return res.status(400).json({ error: "Invalid studentname or Password." })
+        return res.status(400).json({ error: "Invalid username or Password." })
     }
 
     console.log(`Student fetched ${student.email}`)
-    console.log(student)
     res.status(201).json({
         _id: student._id,
-        firstname: student.firstname,
-        lastname: student.lastname,
+        fullname: student.fullname,
         username: student.username,
         email: student.email,
-        age: student.age,
-        city: student.city,
+        course: student.course,
         created: student.createdAt,
         updated: student.updatedAt
     })
