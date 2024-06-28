@@ -62,6 +62,24 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: Key | null | undefined) => {
+
+        
+        //validations
+        if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
+        if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
+        if (email === "") return toast({ variant: 'destructive', title: "Email Cannot be Empty" })
+        if (course === "") return toast({ variant: 'destructive', title: "Course Cannot be Empty" })
+
+        //email
+        var atIdx = email.indexOf("@")
+        var dotIdx = email.indexOf(".")
+        if (atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx) { }
+        else {
+            toast({ variant: "destructive", title: "Invalid Email Format." })
+            return
+        }
+
+
         toast({
             variant: "default",
             title: "Editing Student Data.",
@@ -139,6 +157,7 @@ export function AllStudents() {
                 <TableCaption>List of all the Students.</TableCaption>
                 <TableHeader>
                     <TableRow>
+                        <TableHead className="w-max">Sr No.</TableHead>
                         <TableHead className="w-max">Full Name</TableHead>
                         <TableHead>Username</TableHead>
                         <TableHead>Email</TableHead>
@@ -149,8 +168,9 @@ export function AllStudents() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {allStudents.map((item: { _id: Key | null | undefined; fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => (
+                    {allStudents.map((item: { _id: Key | null | undefined; fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: number) => (
                         <TableRow key={item._id}>
+                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
                             <TableCell className="font-medium w-max">{item.fullname}</TableCell>
                             <TableCell>{item.username}</TableCell>
                             <TableCell>{item.email}</TableCell>
@@ -214,7 +234,7 @@ export function AllStudents() {
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={5}>Total Students</TableCell>
+                        <TableCell colSpan={6}>Total Students</TableCell>
                         <TableCell className="text-center">{allStudents.length}</TableCell>
                     </TableRow>
                 </TableFooter>
