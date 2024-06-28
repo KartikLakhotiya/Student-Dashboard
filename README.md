@@ -13,10 +13,10 @@ A simple student dashboard application built with the MERN(MongoDB, ExpressJS, R
 
 ## Features
 
-- User authentication (login/register)
-- Dashboard displaying student information
-- Profile management
-- Real-time data updates
+- Create User
+- Dashboard displaying student information (still in development)
+- Read User
+- Update and Delete User
 - Responsive design
 
 ## Tech Stack
