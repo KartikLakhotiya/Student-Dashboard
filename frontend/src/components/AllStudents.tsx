@@ -63,7 +63,7 @@ export function AllStudents() {
 
     const editStudent = async (id: Key | null | undefined) => {
 
-        
+
         //validations
         if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })

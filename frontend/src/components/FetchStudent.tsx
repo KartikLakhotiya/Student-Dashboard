@@ -22,7 +22,9 @@ export function FetchStudent() {
 
     const { toast } = useToast()
 
-    const submit = async () => {
+    const submit = async (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+
         toast({
             variant: "default",
             title: "Fetching Student Data.",
@@ -60,11 +62,9 @@ export function FetchStudent() {
         }
         const fetchedStudent = response.json();
         fetchedStudent.then((obj) => {
-            console.log(obj)
             setStudent(obj)
         }).catch(err => console.log(err))
 
-        console.log('student', student)
     }
 
 
@@ -80,7 +80,7 @@ export function FetchStudent() {
                     <CardDescription>Fetch details of a student from the Database.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form>
+                    <form onSubmit={submit}>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Username</Label>
@@ -90,11 +90,11 @@ export function FetchStudent() {
                                 <Label htmlFor="name">Password</Label>
                                 <Input id="name" placeholder="Enter Your Password" type="password" onChange={(e) => setPassword(e.target.value)} />
                             </div>
+                            <Button type="submit">Submit</Button>
                         </div>
                     </form>
                 </CardContent>
                 <CardFooter className="flex justify-center">
-                    <Button onClick={submit}>Submit</Button>
                 </CardFooter>
             </Card>
 

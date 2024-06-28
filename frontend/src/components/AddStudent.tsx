@@ -31,7 +31,8 @@ export function AddStudent() {
 
     const { toast } = useToast()
 
-    const submit = async () => {
+    const submit = async (e: { preventDefault: () => void }) => {
+        e.preventDefault();
         toast({
             variant: "default",
             title: "Adding Student Data.",
@@ -94,7 +95,7 @@ export function AddStudent() {
                 <CardDescription>Add a new student to the Database.</CardDescription>
             </CardHeader>
             <CardContent>
-                <form>
+                <form onSubmit={submit}>
                     <div className="grid w-full items-center gap-4">
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Full Name</Label>
@@ -102,7 +103,7 @@ export function AddStudent() {
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Email</Label>
-                            <Input id="name" placeholder="Enter Your Email" type="email" onChange={(e) => setEmail(e.target.value)} />
+                            <Input id="name" placeholder="Enter Your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Username</Label>
@@ -125,11 +126,12 @@ export function AddStudent() {
                                 </SelectContent>
                             </Select>
                         </div>
+                        <Button type="submit">Submit</Button>
                     </div>
                 </form>
             </CardContent>
             <CardFooter className="flex justify-center">
-                <Button onClick={submit}>Submit</Button>
+
             </CardFooter>
         </Card>
     )
