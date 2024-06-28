@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FetchStudent } from './components/FetchStudent'
 import { Dashboard } from './components/Dasboard'
 import { AllStudents } from './components/AllStudents'
+import Loader from './components/loader/Loader'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/create' element={<AddStudent />} />
           <Route path='/fetch' element={<FetchStudent />} />
           <Route path='/allstudents' element={<AllStudents />} />
+          <Route path='/loader' element={<Loader/>} />
         </Routes>
         <Toaster />
       </ThemeProvider>

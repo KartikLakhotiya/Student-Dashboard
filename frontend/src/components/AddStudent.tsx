@@ -27,28 +27,28 @@ export function AddStudent() {
     const [password, setPassword] = useState("");
     const [course, setCourse] = useState("");
 
-    
+
 
     const { toast } = useToast()
 
-    const submit = async() => {
-        
+    const submit = async () => {
+
         //validations
         if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
         if (email === "") return toast({ variant: 'destructive', title: "Email Cannot be Empty" })
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
-        
+
         // email Validation
         //email
         var atIdx = email.indexOf("@")
         var dotIdx = email.indexOf(".")
         if (atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx) { }
         else {
-            toast({variant:"destructive",title:"Invalid Email Format."})
+            toast({ variant: "destructive", title: "Invalid Email Format." })
             return
         }
-        
+
         const data = {
             'fullname': fullname,
             'username': username,
@@ -68,22 +68,23 @@ export function AddStudent() {
         const a = response.json()
         console.log(a)
 
-        if(response.ok){
+        if (response.ok) {
             toast({
-              title: "Student Added in the Database",
+                variant: "success",
+                title: "Student Added in the Database",
             })
         }
-        else{
+        else {
             console.log(`error`)
             toast({
-                variant:"destructive",
+                variant: "destructive",
                 title: "Error Occured.",
-              })
+            })
         }
-        
-      }
+
+    }
     return (
-        <Card className="w-[450px] mr-auto ml-auto mt-8 ">
+        <Card className="w-[450px] mr-auto ml-auto mt-4 ">
             <CardHeader>
                 <CardTitle>Create Student</CardTitle>
                 <CardDescription>Add a new student to the Database.</CardDescription>
@@ -93,7 +94,7 @@ export function AddStudent() {
                     <div className="grid w-full items-center gap-4">
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Full Name</Label>
-                            <Input id="name" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                            <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Email</Label>

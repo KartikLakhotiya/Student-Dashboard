@@ -27,7 +27,7 @@ export function FetchStudent() {
         //validations
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
-            
+
         const data = {
             "username": username,
             "password": password
@@ -41,17 +41,18 @@ export function FetchStudent() {
             body: JSON.stringify(data)
         })
 
-        if(response.ok){
+        if (response.ok) {
             toast({
+                variant:"success",
                 title: "Student Found in the Database",
-              })
+            })
         }
-        else{
+        else {
             console.log(`error`)
             toast({
-                variant:"destructive",
+                variant: "destructive",
                 title: "Error Occured.",
-              })
+            })
         }
         const fetchedStudent = response.json();
         fetchedStudent.then((obj) => {
@@ -59,11 +60,11 @@ export function FetchStudent() {
             setStudent(obj)
         }).catch(err => console.log(err))
 
-        console.log('student',student)
+        console.log('student', student)
     }
 
 
-    
+
 
 
 
@@ -95,7 +96,7 @@ export function FetchStudent() {
 
             {
                 student && (
-                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto pt-4 pb-4">
+                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto pt-4 pb-4 translate-x-10">
                         <CardHeader>
                             <CardTitle>Student Found</CardTitle>
                             <CardDescription>Fetched details of student from the Database.</CardDescription>
