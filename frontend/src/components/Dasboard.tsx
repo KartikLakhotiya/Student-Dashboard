@@ -46,6 +46,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                         <p className="text-sm text-muted-foreground">
                             Send notifications to device.
                         </p>
+                        <a href="https://new4.gdtot.dad/file/7779679333">click</a>
                     </div>
                     <Switch />
                 </div>
