@@ -2,6 +2,10 @@
 
 A simple student dashboard application built with the MERN(MongoDB, ExpressJS, ReactJS, NodeJS) stack, utilizing ShadCN UI components and styled with Tailwind CSS.
 
+# Live Preview
+
+https://student-dashboard-swart.vercel.app/
+
 ## Table of Contents
 
 - [Features](#features)
