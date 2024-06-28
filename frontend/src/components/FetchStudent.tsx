@@ -23,6 +23,10 @@ export function FetchStudent() {
     const { toast } = useToast()
 
     const submit = async () => {
+        toast({
+            variant: "default",
+            title: "Fetching Student Data.",
+        })
 
         //validations
         if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
@@ -33,7 +37,7 @@ export function FetchStudent() {
             "password": password
         }
 
-        const response = await fetch('http://localhost:5000/api/auth/fetch', {
+        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/fetch', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +47,7 @@ export function FetchStudent() {
 
         if (response.ok) {
             toast({
-                variant:"success",
+                variant: "success",
                 title: "Student Found in the Database",
             })
         }
@@ -69,8 +73,8 @@ export function FetchStudent() {
 
 
     return (
-        <div className="flex mx-32">
-            <Card className="w-[450px] mr-auto ml-auto mt-8 ">
+        <div className=" sm:flex sm:mx-0 lg:flex-row lg:mx-32">
+            <Card className="w-[450px] mr-auto ml-auto mt-8 md:w-[400px] ">
                 <CardHeader>
                     <CardTitle>Fetch Student</CardTitle>
                     <CardDescription>Fetch details of a student from the Database.</CardDescription>
@@ -96,7 +100,7 @@ export function FetchStudent() {
 
             {
                 student && (
-                    <Card className="w-[450px] mr-auto ml-auto mt-8 mb-auto pt-4 pb-4 translate-x-10">
+                    <Card className="w-[450px] mr-auto ml-auto mt-8">
                         <CardHeader>
                             <CardTitle>Student Found</CardTitle>
                             <CardDescription>Fetched details of student from the Database.</CardDescription>

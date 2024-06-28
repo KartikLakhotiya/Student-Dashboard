@@ -39,7 +39,11 @@ export function AllStudents() {
 
 
     const fetchAll = async () => {
-        const response = await fetch('http://localhost:5000/api/auth/all', {
+        toast({
+            variant: "default",
+            title: "Fetching Students Data.",
+        })
+        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,13 +62,17 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: Key | null | undefined) => {
+        toast({
+            variant: "default",
+            title: "Editing Student Data.",
+        })
         const data = {
             "fullname": fullname,
             "username": username,
             "email": email,
             "course": course
         }
-        const response = await fetch(`http://localhost:5000/api/auth/edit/${id}`, {
+        const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/edit/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,9 +100,13 @@ export function AllStudents() {
     }
 
     const deleteStudent = async (id: Key | null | undefined) => {
+        toast({
+            variant: "destructive",
+            title: "Deleting Student.",
+        })
 
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/delete/${id}`, {
+            const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/delete/${id}`, {
                 method: 'DELETE',
             });
             const a = await response.json();

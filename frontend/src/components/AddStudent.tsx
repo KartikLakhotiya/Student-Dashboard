@@ -32,6 +32,10 @@ export function AddStudent() {
     const { toast } = useToast()
 
     const submit = async () => {
+        toast({
+            variant: "default",
+            title: "Adding Student Data.",
+        })
 
         //validations
         if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
@@ -57,7 +61,7 @@ export function AddStudent() {
             'course': course,
         };
 
-        const response = await fetch('http://localhost:5000/api/auth/add', {
+        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,7 +102,7 @@ export function AddStudent() {
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Email</Label>
-                            <Input id="name" placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
+                            <Input id="name" placeholder="Enter Your Email" type="email" onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="name">Username</Label>

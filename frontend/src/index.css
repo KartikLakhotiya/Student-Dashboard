@@ -85,3 +85,8 @@ input::-webkit-inner-spin-button {
       @apply bg-background text-foreground;
     }
   }
+
+html{
+  margin: 0;
+  padding: 0;
+}
