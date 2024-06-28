@@ -57,19 +57,19 @@ export function AllStudents() {
         })
     }
 
-    const editStudent = async(id: Key | null | undefined) => {
+    const editStudent = async (id: Key | null | undefined) => {
         const data = {
             "fullname": fullname,
-            "username":username,
-            "email":email,
-            "course":course
+            "username": username,
+            "email": email,
+            "course": course
         }
-        const response = await fetch(`http://localhost:5000/api/auth/edit/${id}`,{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
+        const response = await fetch(`http://localhost:5000/api/auth/edit/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            body:JSON.stringify(data)
+            body: JSON.stringify(data)
         })
         const a = response.json()
         console.log(a)
@@ -154,25 +154,25 @@ export function AllStudents() {
                                             <AlertDialogDescription className="sm:text-left">
                                                 <div className="flex flex-col space-y-1.5 mb-4">
                                                     <Label htmlFor="name">Full Name</Label>
-                                                    <Input  placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                                                    <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
                                                 </div>
                                                 <div className="flex flex-col space-y-1.5 mb-4">
                                                     <Label htmlFor="name">Username</Label>
-                                                    <Input  placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
+                                                    <Input placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
                                                 </div>
                                                 <div className="flex flex-col space-y-1.5 mb-4">
                                                     <Label htmlFor="name">Email</Label>
-                                                    <Input  placeholder="Enter Your New Email" onChange={(e) => setEmail(e.target.value)} />
+                                                    <Input placeholder="Enter Your New Email" onChange={(e) => setEmail(e.target.value)} />
                                                 </div>
                                                 <div className="flex flex-col space-y-1.5 mb-4">
                                                     <Label htmlFor="name">Course</Label>
-                                                    <Input  placeholder="Enter Your Course" onChange={(e) => setCourse(e.target.value)} />
+                                                    <Input placeholder="Enter Your Course" onChange={(e) => setCourse(e.target.value)} />
                                                 </div>
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction className="" onClick={()=>editStudent(item._id)}>Continue</AlertDialogAction>
+                                            <AlertDialogAction onClick={() => editStudent(item._id)}>Edit</AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>
