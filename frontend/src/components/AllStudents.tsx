@@ -138,7 +138,7 @@ export function AllStudents() {
     return (
         <div className="">
             <h1 className="flex flex-col items-center justify-center text-4xl mt-4 "></h1>
-            <Table className="max-w-4xl ml-auto mr-auto mt-11 rounded-full border">
+            <Table className="max-w-4xl ml-auto mr-auto mt-11 rounded-full border mb-10">
                 <TableCaption>List of all the Students.</TableCaption>
                 <TableHeader>
                     <TableRow>

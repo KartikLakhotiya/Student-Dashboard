@@ -12,7 +12,7 @@ const Navbar = () => {
             <nav className="bg-gray-400 border-gray-200 dark:bg-gray-900 w-full">
                 <div className="flex flex-wrap items-center justify-between mx-auto p-4 w-full">
                     <Link to='/'>
-                        <div className="flex items-center space-x-3 rtl:space-x-reverse hover:text-blue-500 cursor-pointer">
+                        <div className="flex lg:ml-8 items-center space-x-3 rtl:space-x-reverse hover:text-blue-500 cursor-pointer">
                             <AvatarDemo />
                             <p className="self-center text-2xl font-semibold whitespace-nowrap">Student Dashboard</p>
                         </div>
