@@ -62,7 +62,7 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: Key | null | undefined) => {
-         toast({
+        toast({
             variant: "default",
             title: "Editing Student Data.",
         })
@@ -73,7 +73,7 @@ export function AllStudents() {
             "email": email,
             "course": course
         }
-        
+
         const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/edit/${id}`, {
             method: 'POST',
             headers: {
@@ -98,6 +98,7 @@ export function AllStudents() {
             })
         }
         console.log('Edit student form data \n', fullname, username, email, course)
+
 
     }
 
