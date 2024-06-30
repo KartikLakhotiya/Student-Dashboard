@@ -62,34 +62,18 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: Key | null | undefined) => {
-
-
-        //validations
-        if (fullname === "") return toast({ variant: 'destructive', title: "Full Name Cannot be Empty" })
-        if (username === "") return toast({ variant: 'destructive', title: "Username Cannot be Empty" })
-        if (email === "") return toast({ variant: 'destructive', title: "Email Cannot be Empty" })
-        if (course === "") return toast({ variant: 'destructive', title: "Course Cannot be Empty" })
-
-        //email
-        var atIdx = email.indexOf("@")
-        var dotIdx = email.indexOf(".")
-        if (atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx) { }
-        else {
-            toast({ variant: "destructive", title: "Invalid Email Format." })
-            return
-        }
-
-
-        toast({
+         toast({
             variant: "default",
             title: "Editing Student Data.",
         })
+
         const data = {
             "fullname": fullname,
             "username": username,
             "email": email,
             "course": course
         }
+        
         const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/edit/${id}`, {
             method: 'POST',
             headers: {
