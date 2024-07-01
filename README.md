@@ -18,7 +18,7 @@ https://student-dashboard-swart.vercel.app/
 ## Features
 
 - Add A Student
-- Dashboard displaying student information (still in development)
+- Dashboard displaying student information.
 - Fetch Details of Student
 - Edit and Delete Student
 - Responsive design
@@ -49,40 +49,44 @@ Ensure you have the following :
 ### Setup
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/KartikLakhotiya/Student-Dashboard.git
 
+   ```
 2. Install dependencies in both frontend and backend folder:
-    ```bash
-    cd frontend
-    npm install
-    ```
-    ```bash
-    cd backend
-    npm install
-    ```
 
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+   ```bash
+   cd backend
+   npm install
+   ```
 3. Create a `.env` file in the root directory of backend folder and add your MongoDB connection string:
-    ```
-    PORT=5000
-    MONGO_URI="your_mongo_atlas_connection_string"
-    ```
 
+   ```
+   PORT=5000
+   MONGO_URI="your_mongo_atlas_connection_string"
+   ```
 4. Also replace `https://student-dashboard-xvbg.onrender.com` with `http://localhost:5000` during local deployment.
 
 ## Running the Application
 
 1. Go into the backend directory:
-    ```bash
-    cd backend
-    npm start
-    ```
 
+   ```bash
+   cd backend
+   npm start
+   ```
 2. Go into the frontend directory:
-    ```bash
-    cd frontend
-    npm run dev
-    ```
+
+   ```bash
+   cd frontend
+   npm run dev
+   ```
 
 The API (Backend) will be running at `http://localhost:5000`.
 The Frontent will be running at `http://localhost:5173`.
@@ -90,7 +94,6 @@ The Frontent will be running at `http://localhost:5173`.
 ## Contact
 
 For questions or support, please open an issue in this repository.
-
 
 ---
 
