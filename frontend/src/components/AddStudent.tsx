@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -27,6 +27,11 @@ export function AddStudent() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [course, setCourse] = useState("");
+    const inputRef = useRef<any>(null);
+
+    const focusInput = () => {
+        inputRef.current.focus();
+    }
 
 
 
@@ -89,6 +94,10 @@ export function AddStudent() {
         }
 
     }
+    useEffect(() => {
+        focusInput();
+    }, [])
+    
     return (
         <motion.div
             initial={{ opacity: 0, y: 0 }}
@@ -105,7 +114,7 @@ export function AddStudent() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Full Name</Label>
-                                <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                                <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} ref={inputRef} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Email</Label>

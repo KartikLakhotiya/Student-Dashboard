@@ -21,7 +21,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from "react"
 import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
@@ -40,6 +40,12 @@ export function AllStudents() {
     const [email, setEmail] = useState("");
     const [course, setCourse] = useState("");
 
+    const inputRef = useRef<any>(null);
+
+    const focusInput = () => {
+        inputRef.current.focus();
+    }
+
 
     const fetchAll = async () => {
         toast({
@@ -56,7 +62,7 @@ export function AllStudents() {
         const data = response.json()
         data.then((obj) => {
             setAllStudents(obj)
-            console.log(obj)
+            // console.log(obj)
         })
         toast({
             variant: "success",
@@ -65,6 +71,9 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: Key | null | undefined) => {
+
+        focusInput();
+
         toast({
             variant: "default",
             title: "Editing Student Data.",
@@ -136,6 +145,8 @@ export function AllStudents() {
 
     useEffect(() => {
         fetchAll();
+        // focusInput();
+
     }, [])
 
     return (
@@ -180,7 +191,7 @@ export function AllStudents() {
                                                 <AlertDialogDescription className="sm:text-left">
                                                     <div className="flex flex-col space-y-1.5 mb-4">
                                                         <Label htmlFor="name">Full Name</Label>
-                                                        <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                                                        <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} ref={inputRef} />
                                                     </div>
                                                     <div className="flex flex-col space-y-1.5 mb-4">
                                                         <Label htmlFor="name">Username</Label>

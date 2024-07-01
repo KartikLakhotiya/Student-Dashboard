@@ -1,7 +1,7 @@
 import { CheckIcon } from "@radix-ui/react-icons"
 import {
     AlertDialog,
-    AlertDialogCancel,
+    AlertDialogAction,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -68,13 +68,13 @@ export function Dashboard({ className, ...props }: CardProps) {
                 calc: "stringify",
             },
         ],
-        ["MCA", MCA_Count.length, "#b87333", null],
-        ["B.Tech", btech_Count.length, "silver", null],
-        ["MBA Tech", mbatech_Count.length, "gold", null],
+        ["MCA", MCA_Count.length, "#1d317e", null],
+        ["B.Tech", btech_Count.length, "#105a51", null],
+        ["MBA Tech", mbatech_Count.length, "#794f16", null],
     ];
 
     const options = {
-        title: "Courses Offered",
+        title: "Courses Count in Bar Graph",
         width: 400,
         height: 400,
         bar: { groupWidth: "95%" },
@@ -92,8 +92,8 @@ export function Dashboard({ className, ...props }: CardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
         >
-            <div className="flex flex-col lg:flex-row">
-                <Card className={cn("w-full lg:w-[380px] lg:ml-8 mt-8 h-[470px]", className)} {...props}>
+            <div className="flex flex-col lg:flex-row lg:mx-14">
+                <Card className={cn("w-full lg:w-[380px] mt-8 h-[470px]", className)} {...props}>
                     <CardHeader>
                         <CardTitle className="text-center">Details</CardTitle>
                     </CardHeader>
@@ -175,7 +175,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel>Close</AlertDialogCancel>
+                                    <AlertDialogAction>Close</AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -17,6 +17,12 @@ export function FetchStudent() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [student, setStudent] = useState<any>(null);
+
+    const inputRef = useRef<any>(null);
+
+    const focusInput = () => {
+        inputRef.current.focus();
+    }
 
     const { toast } = useToast();
 
@@ -76,6 +82,11 @@ export function FetchStudent() {
             .catch((err) => console.log(err));
     };
 
+    useEffect(() => {
+      focusInput();
+    }, [])
+    
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 0 }}
@@ -99,6 +110,7 @@ export function FetchStudent() {
                                         id="name"
                                         placeholder="Enter Your Username"
                                         onChange={(e) => setUsername(e.target.value)}
+                                        ref={inputRef}
                                     />
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
