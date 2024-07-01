@@ -75,7 +75,7 @@ export function AllStudents() {
         focusInput();
 
         toast({
-            variant: "default",
+            variant: "success",
             title: "Editing Student Data.",
         })
 
@@ -110,6 +110,8 @@ export function AllStudents() {
             })
         }
         console.log('Edit student form data \n', fullname, username, email, course)
+
+        fetchAll()
 
 
     }

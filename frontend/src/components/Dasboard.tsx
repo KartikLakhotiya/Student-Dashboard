@@ -92,7 +92,7 @@ export function Dashboard({ className, ...props }: CardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
         >
-            <div className="flex flex-col lg:flex-row lg:mx-14">
+            <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20">
                 <Card className={cn("w-full lg:w-[380px] mt-8 h-[470px]", className)} {...props}>
                     <CardHeader>
                         <CardTitle className="text-center">Details</CardTitle>
