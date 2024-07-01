@@ -21,12 +21,15 @@ input::-webkit-inner-spin-button {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #03152db1;
+  border-radius: 100px;
+
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #050b45a8;
+  border-radius: 100px;
 }
 
 /* Handle on hover */

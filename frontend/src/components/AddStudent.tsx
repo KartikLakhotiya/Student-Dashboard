@@ -18,6 +18,8 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
+import { motion } from "framer-motion";
+
 
 export function AddStudent() {
 
@@ -89,50 +91,53 @@ export function AddStudent() {
 
     }
     return (
-        <Card className="w-[450px] mr-auto ml-auto mt-4 ">
-            <CardHeader>
-                <CardTitle>Create Student</CardTitle>
-                <CardDescription>Add a new student to the Database.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <form onSubmit={submit}>
-                    <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Full Name</Label>
-                            <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+        <motion.div
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+        >
+            <Card className="w-[450px] mr-auto ml-auto mt-4 mb-0 ">
+                <CardHeader>
+                    <CardTitle>Create Student</CardTitle>
+                    <CardDescription>Add a new student to the Database.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={submit}>
+                        <div className="grid w-full items-center gap-4">
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Full Name</Label>
+                                <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Email</Label>
+                                <Input id="name" placeholder="Enter Your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Username</Label>
+                                <Input id="name" placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Password</Label>
+                                <Input id="name" placeholder="Enter Your Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="course">Course</Label>
+                                <Select onValueChange={(value) => setCourse(value)}>
+                                    <SelectTrigger id="framework">
+                                        <SelectValue placeholder="Select" />
+                                    </SelectTrigger>
+                                    <SelectContent position="popper" >
+                                        <SelectItem value="MCA">MCA</SelectItem>
+                                        <SelectItem value="B.Tech">B.Tech</SelectItem>
+                                        <SelectItem value="MBA Tech">MBA Tech</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <Button type="submit">Submit</Button>
                         </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Email</Label>
-                            <Input id="name" placeholder="Enter Your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Username</Label>
-                            <Input id="name" placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Password</Label>
-                            <Input id="name" placeholder="Enter Your Password" type="password" onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="course">Course</Label>
-                            <Select onValueChange={(value) => setCourse(value)}>
-                                <SelectTrigger id="framework">
-                                    <SelectValue placeholder="Select" />
-                                </SelectTrigger>
-                                <SelectContent position="popper" >
-                                    <SelectItem value="MCA">MCA</SelectItem>
-                                    <SelectItem value="B.Tech">B.Tech</SelectItem>
-                                    <SelectItem value="MBA Tech">MBA Tech</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <Button type="submit">Submit</Button>
-                    </div>
-                </form>
-            </CardContent>
-            <CardFooter className="flex justify-center">
-
-            </CardFooter>
-        </Card>
+                    </form>
+                </CardContent>
+            </Card>
+        </motion.div>
     )
 }
