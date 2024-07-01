@@ -88,139 +88,139 @@ export function Dashboard({ className, ...props }: CardProps) {
 
     return (
         <motion.div
-    initial={{ opacity: 0, y: 0 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1 }}
->
-    <div className="flex flex-col lg:flex-row">
-        <Card className={cn("w-full lg:w-[380px] lg:ml-8 mt-8 h-[470px]", className)} {...props}>
-            <CardHeader>
-                <CardTitle className="text-center">Details</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                    <LucideCircleUser />
-                    <div className="flex-1 space-y-1">
-                        <p className="text-xl font-medium leading-none">
-                            Total Students
-                        </p>
-                    </div>
-                    <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                        <p>{allStudents.length}</p>
-                    </div>
-                </div>
-                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                    <LucideCircleUser />
-                    <div className="flex-1 space-y-1">
-                        <p className="text-xl font-medium leading-none">
-                            MCA Students
-                        </p>
-                    </div>
-                    <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                        <p>{MCA_Count.length}</p>
-                    </div>
-                </div>
-                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                    <LucideCircleUser />
-                    <div className="flex-1 space-y-1">
-                        <p className="text-xl font-medium leading-none">
-                            B.Tech Students
-                        </p>
-                    </div>
-                    <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                        <p>{btech_Count.length}</p>
-                    </div>
-                </div>
-                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                    <LucideCircleUser />
-                    <div className="flex-1 space-y-1">
-                        <p className="text-xl font-medium leading-none">
-                            MBA Tech Students
-                        </p>
-                    </div>
-                    <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                        <p>{mbatech_Count.length}</p>
-                    </div>
-                </div>
-            </CardContent>
-            <CardFooter>
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button className="w-full">
-                            <CheckIcon className="mr-2 h-4 w-4" /> Show List of All Students
-                        </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                        <AlertDialogHeader>
-                            <AlertDialogTitle className="text-2xl mb-4">All Students List</AlertDialogTitle>
-                            <AlertDialogDescription className="sm:text-left">
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead className="w-20">Sr No.</TableHead>
-                                            <TableHead className="w-max">Full Name</TableHead>
-                                            <TableHead className="w-max">Course</TableHead>
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+        >
+            <div className="flex flex-col lg:flex-row">
+                <Card className={cn("w-full lg:w-[380px] lg:ml-8 mt-8 h-[470px]", className)} {...props}>
+                    <CardHeader>
+                        <CardTitle className="text-center">Details</CardTitle>
+                    </CardHeader>
+                    <CardContent className="grid gap-4">
+                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                            <LucideCircleUser />
+                            <div className="flex-1 space-y-1">
+                                <p className="text-xl font-medium leading-none">
+                                    Total Students
+                                </p>
+                            </div>
+                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
+                                <p>{allStudents.length}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                            <LucideCircleUser />
+                            <div className="flex-1 space-y-1">
+                                <p className="text-xl font-medium leading-none">
+                                    MCA Students
+                                </p>
+                            </div>
+                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
+                                <p>{MCA_Count.length}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                            <LucideCircleUser />
+                            <div className="flex-1 space-y-1">
+                                <p className="text-xl font-medium leading-none">
+                                    B.Tech Students
+                                </p>
+                            </div>
+                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
+                                <p>{btech_Count.length}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                            <LucideCircleUser />
+                            <div className="flex-1 space-y-1">
+                                <p className="text-xl font-medium leading-none">
+                                    MBA Tech Students
+                                </p>
+                            </div>
+                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
+                                <p>{mbatech_Count.length}</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button className="w-full">
+                                    <CheckIcon className="mr-2 h-4 w-4" /> Show List of All Students
+                                </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="h-[600px] overflow-y-auto">
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle className="text-2xl mb-4">All Students List</AlertDialogTitle>
+                                    <AlertDialogDescription className="sm:text-left">
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead className="w-20">Sr No.</TableHead>
+                                                    <TableHead className="w-max">Full Name</TableHead>
+                                                    <TableHead className="w-max">Course</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {allStudents.map((item: { fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                                    <TableRow key={index}>
+                                                        <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                                        <TableCell className="font-medium w-max">{item.fullname}</TableCell>
+                                                        <TableCell className="font-medium w-max">{item.course}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Close</AlertDialogCancel>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    </CardFooter>
+                </Card>
+
+                <Card className="w-full lg:w-[500px] lg:ml-8 mt-8">
+                    <CardHeader>
+                        <CardTitle className="text-center">Student Credentials</CardTitle>
+                    </CardHeader>
+                    <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
+                        <div className="flex items-center space-x-4 rounded-md border p-4">
+                            <Table className="w-full">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="w-20">Sr No.</TableHead>
+                                        <TableHead className="w-max">Username</TableHead>
+                                        <TableHead className="w-max">Email</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {allStudents.map((item: { username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                        <TableRow key={index}>
+                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.username}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.email}</TableCell>
                                         </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {allStudents.map((item: { fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
-                                            <TableRow key={index}>
-                                                <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                                <TableCell className="font-medium w-max">{item.fullname}</TableCell>
-                                                <TableCell className="font-medium w-max">{item.course}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                            <AlertDialogCancel>Close</AlertDialogCancel>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
-            </CardFooter>
-        </Card>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </CardContent>
+                </Card>
 
-        <Card className="w-full lg:w-[500px] lg:ml-8 mt-8">
-            <CardHeader>
-                <CardTitle className="text-center">Student Credentials</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
-                <div className="flex items-center space-x-4 rounded-md border p-4">
-                    <Table className="w-full">
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-20">Sr No.</TableHead>
-                                <TableHead className="w-max">Username</TableHead>
-                                <TableHead className="w-max">Email</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {allStudents.map((item: { username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index:number) => (
-                                <TableRow key={index}>
-                                    <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                    <TableCell className="font-medium w-max">{item.username}</TableCell>
-                                    <TableCell className="font-medium w-max">{item.email}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div>
-            </CardContent>
-        </Card>
-
-        <Card className="w-full lg:w-auto h-[440px] lg:ml-8 mt-8 p-4">
-            <Chart
-                chartType="BarChart"
-                width="100%"
-                height="100%"
-                data={data}
-                options={options}
-            />
-        </Card>
-    </div>
-</motion.div>
+                <Card className="w-full lg:w-auto h-[440px] lg:ml-8 mt-8 p-4">
+                    <Chart
+                        chartType="BarChart"
+                        width="100%"
+                        height="100%"
+                        data={data}
+                        options={options}
+                    />
+                </Card>
+            </div>
+        </motion.div>
 
     )
 }
