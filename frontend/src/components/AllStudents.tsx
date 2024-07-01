@@ -26,6 +26,7 @@ import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "./ui/select";
 
 
 export function AllStudents() {
@@ -183,7 +184,16 @@ export function AllStudents() {
                                                 </div>
                                                 <div className="flex flex-col space-y-1.5 mb-4">
                                                     <Label htmlFor="name">Course</Label>
-                                                    <Input placeholder="Enter Your Course" onChange={(e) => setCourse(e.target.value)} />
+                                                    <Select onValueChange={(value) => setCourse(value)}>
+                                                        <SelectTrigger id="framework">
+                                                            <SelectValue placeholder="Select" />
+                                                        </SelectTrigger>
+                                                        <SelectContent position="popper" >
+                                                            <SelectItem value="MCA">MCA</SelectItem>
+                                                            <SelectItem value="B.Tech">B.Tech</SelectItem>
+                                                            <SelectItem value="MBA Tech">MBA Tech</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
                                                 </div>
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
