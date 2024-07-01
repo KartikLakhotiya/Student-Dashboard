@@ -68,6 +68,8 @@ Ensure you have the following :
     MONGO_URI="your_mongo_atlas_connection_string"
     ```
 
+4. Also replace `https://student-dashboard-xvbg.onrender.com` with `http://localhost:5000` during local deployment.
+
 ## Running the Application
 
 1. Go into the backend directory:
