@@ -29,28 +29,32 @@ const Navbar = () => {
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
-                        {/* <ModeToggle /> */}
                     </button>
                     <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-                        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-400 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-gray-400 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 mr-44">
-                            <li>
-                                <Link to='/'><Button variant="outline" onClick={() => setIsOpen(false)}>HOME</Button></Link>
-                            </li>
-                            <li>
-                                <Link to='/create'><Button variant="outline" onClick={() => setIsOpen(false)}>CREATE</Button></Link>
-                            </li>
-                            <li>
-                                <Link to='/fetch'><Button variant="outline" onClick={() => setIsOpen(false)}>FETCH STUDENT</Button></Link>
-                            </li>
-                            <li>
-                                <Link to='/allstudents'><Button variant="outline" onClick={() => setIsOpen(false)}>ALL STUDENTS</Button></Link>
-                            </li>
-                        </ul>
+                        <div className="flex flex-col md:flex-row md:items-center">
+                            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  md:dark:bg-gray-900 dark:border-gray-700 mr-[21rem] md:w-max">
+                                <li>
+                                    <Link to='/'><Button variant="outline" onClick={() => setIsOpen(false)}>HOME</Button></Link>
+                                </li>
+                                <li>
+                                    <Link to='/create'><Button variant="outline" onClick={() => setIsOpen(false)}>CREATE</Button></Link>
+                                </li>
+                                <li>
+                                    <Link to='/fetch'><Button variant="outline" onClick={() => setIsOpen(false)}>FETCH STUDENT</Button></Link>
+                                </li>
+                                <li>
+                                    <Link to='/allstudents'><Button variant="outline" onClick={() => setIsOpen(false)}>ALL STUDENTS</Button></Link>
+                                </li>
+                            </ul>
+                            <div className="ml-auto md:ml-0">
+                                <ModeToggle />
+                            </div>
+                        </div>
                     </div>
-                    <ModeToggle />
                 </div>
             </nav>
         </div>
+
     )
 }
 
