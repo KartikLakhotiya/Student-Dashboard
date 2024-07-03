@@ -11,10 +11,14 @@
 }
 .main-heading {
   /* font-family: 'Honk'; */
-  font-size: 28px;
-  font-family: 'Arsenal SC';
+  font-size: 22px;
+  font-family: 'Inter';
   text-align: center;
   white-space: nowrap;
+}
+
+.hello{
+  background-color: #14141446;
 }
 
 .main-heading:hover {

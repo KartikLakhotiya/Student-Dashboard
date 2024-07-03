@@ -103,8 +103,8 @@ export function AddStudent() {
 
         const data = {
             'fullname': fullname,
-            'username': username,
-            'email': email,
+            'username': username.toLowerCase(),
+            'email': email.toLowerCase(),
             'password': password,
             'course': course,
         };
@@ -155,19 +155,19 @@ export function AddStudent() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Full Name</Label>
-                                <Input id="name" type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} ref={inputRef} />
+                                <Input type="text" placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} ref={inputRef} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Email</Label>
-                                <Input id="name" placeholder="Enter Your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
+                                <Input placeholder="Enter Your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Username</Label>
-                                <Input id="name" placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
+                                <Input placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Password</Label>
-                                <Input id="name" placeholder="Enter Your Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+                                <Input placeholder="Enter Your Password" type="password" onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="course">Course</Label>

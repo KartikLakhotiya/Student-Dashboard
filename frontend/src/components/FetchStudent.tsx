@@ -107,7 +107,7 @@ export function FetchStudent() {
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="name">Username</Label>
                                     <Input
-                                        id="name"
+
                                         placeholder="Enter Your Username"
                                         onChange={(e) => setUsername(e.target.value)}
                                         ref={inputRef}

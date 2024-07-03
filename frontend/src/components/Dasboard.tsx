@@ -20,9 +20,11 @@ import {
 } from "@/components/ui/card"
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import { Album, LucideCircleUser } from "lucide-react"
+import { LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
 import { Chart } from "react-google-charts";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+import { Label } from "./ui/label"
 
 
 
@@ -31,6 +33,8 @@ type CardProps = React.ComponentProps<typeof Card>
 export function Dashboard({ className, ...props }: CardProps) {
 
     const [allStudents, setAllStudents] = useState<any>([]);
+    const [selectedCourse, setSelectedCourse] = useState<string>("MCA");
+
     const fetchAll = async () => {
         const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
             method: 'POST',
@@ -46,20 +50,38 @@ export function Dashboard({ className, ...props }: CardProps) {
         })
     }
 
-
-
-
     const MCA_Count = allStudents.filter((item: { course: string; }) => item.course === 'MCA');
 
     const btech_Count = allStudents.filter((item: { course: string; }) => item.course === 'B.Tech');
 
     const mbatech_Count = allStudents.filter((item: { course: string; }) => item.course === 'MBA Tech');
 
+    const filteredStudents = selectedCourse === "All" ? allStudents : allStudents.filter((item: { course: string }) => item.course === selectedCourse);
+
+    const details = [
+        {
+            title: "Total Students",
+            count: allStudents.length,
+        },
+        {
+            title: "MCA Students",
+            count: MCA_Count.length,
+        },
+        {
+            title: "B.Tech Students",
+            count: btech_Count.length,
+        },
+        {
+            title: "MBA Tech Students",
+            count: mbatech_Count.length,
+        },
+    ]
+
     // bar chart
     const data = [
         [
-            "Courses",
-            "Count",
+            "",
+            "",
             { role: "style" },
             {
                 sourceColumn: 0,
@@ -81,6 +103,27 @@ export function Dashboard({ className, ...props }: CardProps) {
         legend: { position: "none" },
     };
 
+    // pie chart
+    const pie_data = [
+        ["Course", "Courses per Student"],
+        ["MCA", MCA_Count.length],
+        ["B.Tech", btech_Count.length],
+        ["MBA Tech", mbatech_Count.length]
+    ];
+
+    const pie_options = {
+        title: "Analysis Of Courses",
+        backgroundColor: '#14141446'
+    };
+
+    // column chart
+    const column_data = [
+        ["Element", "Courses", { role: "style" }],
+        ["MCA", MCA_Count.length, "#b87333"],
+        ["B.Tech", btech_Count.length, "silver"],
+        ["MBA Tech", mbatech_Count.length, "gold"]
+    ];
+
     useEffect(() => {
         fetchAll();
     }, [])
@@ -92,61 +135,36 @@ export function Dashboard({ className, ...props }: CardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
         >
-            <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20">
-                <Card className={cn("w-full lg:w-[380px] mt-8 h-[470px]", className)} {...props}>
+            {/* Top Div */}
+            <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8">
+
+                {/* Details Card */}
+
+                <Card className={cn("w-full lg:w-[380px] mt-8 h-[500px]", className)} {...props}>
                     <CardHeader>
                         <CardTitle className="text-center">Details</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <LucideCircleUser />
-                            <div className="flex-1 space-y-1">
-                                <p className="text-xl font-medium leading-none">
-                                    Total Students
-                                </p>
-                            </div>
-                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                                <p>{allStudents.length}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <Album />
-                            <div className="flex-1 space-y-1">
-                                <p className="text-xl font-medium leading-none">
-                                    MCA Students
-                                </p>
-                            </div>
-                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                                <p>{MCA_Count.length}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <Album />
-                            <div className="flex-1 space-y-1">
-                                <p className="text-xl font-medium leading-none">
-                                    B.Tech Students
-                                </p>
-                            </div>
-                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                                <p>{btech_Count.length}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <Album />
-                            <div className="flex-1 space-y-1">
-                                <p className="text-xl font-medium leading-none">
-                                    MBA Tech Students
-                                </p>
-                            </div>
-                            <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
-                                <p>{mbatech_Count.length}</p>
-                            </div>
-                        </div>
+                        {
+                            details.map((item) => (
+                                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                                    <LucideCircleUser />
+                                    <div className="flex-1 space-y-1">
+                                        <p className="text-xl font-medium leading-none">
+                                            {item.title}
+                                        </p>
+                                    </div>
+                                    <div className="bg-white text-black h-7 flex justify-center items-center w-7 rounded-full">
+                                        <p>{item.count}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </CardContent>
                     <CardFooter>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
-                                <Button className="w-full">
+                                <Button className="w-full mt-11">
                                     <CheckIcon className="mr-2 h-4 w-4" /> Show List of All Students
                                 </Button>
                             </AlertDialogTrigger>
@@ -182,12 +200,13 @@ export function Dashboard({ className, ...props }: CardProps) {
                     </CardFooter>
                 </Card>
 
+                {/* All Students Credentials Card */}
                 <Card className="w-full lg:w-[500px] lg:ml-8 mt-8">
                     <CardHeader>
                         <CardTitle className="text-center">Student Credentials</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
-                        <div className="flex items-center space-x-4 rounded-md border p-4">
+                        <div className="flex space-x-4 rounded-md border p-4">
                             <Table className="w-full">
                                 <TableHeader>
                                     <TableRow>
@@ -210,7 +229,58 @@ export function Dashboard({ className, ...props }: CardProps) {
                     </CardContent>
                 </Card>
 
-                <Card className="w-full lg:w-auto h-[440px] lg:ml-8 mt-8 p-4">
+
+                {/* Sort Students by Course Card */}
+                <Card className="w-full lg:w-[500px] h-[500px] lg:ml-8 mt-8">
+                    <CardHeader>
+                        <CardTitle className="text-center">Sort Students by Course</CardTitle>
+                    </CardHeader>
+                    <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
+                        <div className="flex justify-between items-center mb-4 w-max">
+                            <Label htmlFor="course-select" className="mr-2 w-64">Select Course:</Label>
+                            <Select defaultValue="MCA" onValueChange={(value) => setSelectedCourse(value)}>
+                                <SelectTrigger id="framework">
+                                    <SelectValue placeholder="Select" />
+                                </SelectTrigger>
+                                <SelectContent position="popper" >
+                                    <SelectItem value="MCA">MCA</SelectItem>
+                                    <SelectItem value="B.Tech">B.Tech</SelectItem>
+                                    <SelectItem value="MBA Tech">MBA Tech</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div className="flex space-x-4 rounded-md border p-4">
+                            <Table className="w-full">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="w-20">Sr No.</TableHead>
+                                        <TableHead className="w-max">Full Name</TableHead>
+                                        <TableHead className="w-max">Course</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {filteredStudents.map((item: { fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                        <TableRow key={index}>
+                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.fullname}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.course}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </CardContent>
+                </Card>
+
+            </div>
+
+            {/* Bottom Div */}
+            <h1 className="flex justify-center items-center text-4xl mt-11 text-card-foreground font-bold" >Visualisation Charts</h1>
+            <div className="w-max lg:w-max h-[440px] lg:ml-8 p-4 lg:flex">
+
+
+                {/* Bar Chart */}
+                <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-4">
                     <Chart
                         chartType="BarChart"
                         width="100%"
@@ -219,8 +289,29 @@ export function Dashboard({ className, ...props }: CardProps) {
                         options={options}
                     />
                 </Card>
+
+                {/* Pie Chart */}
+                <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-4 md:flex md:flex-col">
+                    <Chart
+                        chartType="PieChart"
+                        data={pie_data}
+                        options={pie_options}
+                        width={"100%"}
+                        height={"400px"}
+                    />
+                </Card>
+
+                {/* Column Chart */}
+                <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-4 md:flex md:flex-col">
+                    <Chart
+                        chartType="ColumnChart"
+                        width="100%"
+                        height="400px"
+                        data={column_data} />
+                </Card>
             </div>
         </motion.div>
+
 
     )
 }

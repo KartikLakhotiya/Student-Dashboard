@@ -92,8 +92,8 @@ export function AllStudents() {
             },
             body: JSON.stringify(data)
         })
-        const a = response.json()
-        console.log(a)
+        // const a = response.json()
+        // console.log(a)
 
         if (response.ok) {
             toast({
@@ -108,7 +108,7 @@ export function AllStudents() {
                 title: "Error Occured.",
             })
         }
-        console.log('Edit student form data \n', fullname, username, email, course)
+        // console.log('Edit student form data \n', fullname, username, email, course)
 
         fetchAll()
 
@@ -125,8 +125,8 @@ export function AllStudents() {
             const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/delete/${id}`, {
                 method: 'DELETE',
             });
-            const a = await response.json();
-            console.log(a);
+            // const a = await response.json();
+            // console.log(a);
             if (!response.ok) {
                 toast({
                     variant: "destructive",
