@@ -1,12 +1,12 @@
 import './App.css'
-import { AddStudent } from './components/AddStudent'
+import { AddStudent } from './pages/AddStudent'
 import Navbar from './components/navbar'
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from './components/ui/toaster'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { FetchStudent } from './components/FetchStudent'
-import { Dashboard } from './components/Dasboard'
-import { AllStudents } from './components/AllStudents'
+import { FetchStudent } from './pages/FetchStudent'
+import { Dashboard } from './pages/Dasboard'
+import { AllStudents } from './pages/AllStudents'
 import { motion } from "framer-motion";
 
 function App() {

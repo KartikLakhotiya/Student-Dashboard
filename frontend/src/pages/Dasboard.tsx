@@ -19,12 +19,12 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
 import { Chart } from "react-google-charts";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Label } from "./ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
+import { Label } from "../components/ui/label"
 
 
 

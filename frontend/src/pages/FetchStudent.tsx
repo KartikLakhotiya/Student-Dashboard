@@ -68,11 +68,11 @@ export function FetchStudent() {
                 title: "Student Found in the Database",
             });
         } else {
-            console.log(`error`);
             toast({
                 variant: "destructive",
                 title: "Error Occured.",
             });
+            return
         }
         const fetchedStudent = response.json();
         fetchedStudent
@@ -93,7 +93,7 @@ export function FetchStudent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
         >
-            <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-32">
+            <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-48">
                 <Card className="w-[450px] mr-auto ml-auto mt-8 md:w-[400px]">
                     <CardHeader>
                         <CardTitle>Fetch Student</CardTitle>
