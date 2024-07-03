@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind utilities;
@@ -6,6 +8,19 @@
 
 *{
   font-family: 'Inter';
+}
+.main-heading {
+  /* font-family: 'Honk'; */
+  font-size: 28px;
+  font-family: 'Arsenal SC';
+  text-align: center;
+  white-space: nowrap;
+}
+
+.main-heading:hover {
+  background: linear-gradient(90deg, #6fc0b2, #437bb4); /* Define your gradient colors */
+  -webkit-background-clip: text; /* This makes the gradient only apply to the text */
+  -webkit-text-fill-color: transparent; /* This makes the text fill transparent to show the gradient */
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
