@@ -1,4 +1,3 @@
-import { CheckIcon } from "@radix-ui/react-icons"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -20,7 +19,7 @@ import {
 } from "@/components/ui/card"
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
-import { LucideCircleUser } from "lucide-react"
+import { AlignJustify, LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
 import { Chart } from "react-google-charts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
@@ -110,8 +109,7 @@ export function Dashboard({ className, ...props }: CardProps) {
     ];
 
     const pie_options = {
-        title: "Analysis Of Courses",
-        backgroundColor: '#14141446'
+        title: "Analysis Of Courses Taken By Students",
     };
 
     // column chart
@@ -163,7 +161,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button className="w-full mt-11">
-                                    <CheckIcon className="mr-2 h-4 w-4" /> Show List of All Students
+                                    <AlignJustify className="mr-2 h-4 w-4" /> Show List of All Students
                                 </Button>
                             </AlertDialogTrigger>
                             <AlertDialogContent className="h-[600px] overflow-y-auto">
