@@ -15,25 +15,25 @@ import {
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
-    AlertDialogDescription1,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from "react"
+import { Key, useEffect, useRef, useState } from "react"
 import { useToast } from "../components/ui/use-toast";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "../components/ui/select";
 import { motion } from "framer-motion";
-
+import { Search } from "lucide-react";
 
 export function AllStudents() {
-
     const [allStudents, setAllStudents] = useState<any>([]);
-    const { toast } = useToast()
+    const [filteredStudents, setFilteredStudents] = useState<any>([]);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const { toast } = useToast();
     const [fullname, setFullname] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -45,12 +45,11 @@ export function AllStudents() {
         inputRef.current.focus();
     }
 
-
     const fetchAll = async () => {
         toast({
             variant: "default",
             title: "Fetching Students Data.",
-        })
+        });
         const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
@@ -58,32 +57,31 @@ export function AllStudents() {
             }
         });
 
-        const data = response.json()
+        const data = response.json();
         data.then((obj) => {
-            setAllStudents(obj)
-            // console.log(obj)
-        })
+            setAllStudents(obj);
+            setFilteredStudents(obj);
+        });
         toast({
             variant: "success",
             title: "Data Fetched.",
-        })
+        });
     }
 
     const editStudent = async (id: Key | null | undefined) => {
-
         focusInput();
 
         toast({
             variant: "success",
             title: "Editing Student Data.",
-        })
+        });
 
         const data = {
             "fullname": fullname,
             "username": username,
             "email": email,
             "course": course
-        }
+        };
 
         const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/edit/${id}`, {
             method: 'POST',
@@ -91,53 +89,46 @@ export function AllStudents() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        })
-        // const a = response.json()
-        // console.log(a)
+        });
 
         if (response.ok) {
             toast({
                 variant: "success",
                 title: "Student Edited.",
-            })
-        }
-        else {
-            console.log(`error`)
+            });
+        } else {
+            console.log(`error`);
             toast({
                 variant: "destructive",
-                title: "Error Occured.",
-            })
+                title: "Error Occurred.",
+            });
         }
-        // console.log('Edit student form data \n', fullname, username, email, course)
 
-        fetchAll()
-
-
+        fetchAll();
     }
 
     const deleteStudent = async (id: Key | null | undefined) => {
         toast({
             variant: "destructive",
             title: "Deleting Student.",
-        })
+        });
 
         try {
             const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/delete/${id}`, {
                 method: 'DELETE',
             });
-            // const a = await response.json();
-            // console.log(a);
+
             if (!response.ok) {
                 toast({
                     variant: "destructive",
-                    title: "Some Error Occured.",
-                })
+                    title: "Some Error Occurred.",
+                });
             }
             fetchAll();
             toast({
                 variant: "success",
                 title: "Student Deleted.",
-            })
+            });
 
         } catch (error) {
             console.log(error);
@@ -146,9 +137,17 @@ export function AllStudents() {
 
     useEffect(() => {
         fetchAll();
-        // focusInput();
+    }, []);
 
-    }, [])
+    useEffect(() => {
+        const filtered = allStudents.filter((student: any) =>
+            student.fullname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            student.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            student.course.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredStudents(filtered);
+    }, [searchTerm, allStudents]);
 
     return (
         <motion.div
@@ -157,8 +156,22 @@ export function AllStudents() {
             transition={{ duration: 2 }}
         >
             <div className="">
-                <h1 className="flex flex-col items-center justify-center text-4xl mt-4 "></h1>
-                <Table className="max-w-4xl ml-auto mr-auto mt-11 rounded-full border mb-10">
+                <h1 className="flex flex-col items-center justify-center text-4xl mt-4 font-bold ">ALL STUDENTS</h1>
+                <div className="flex justify-center mt-4">
+                    <div className="relative w-96">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <Search className="w-5 h-5 text-gray-500" />
+                        </div>
+                        <Input
+                            type="text"
+                            placeholder="Search Students..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10"
+                        />
+                    </div>
+                </div>
+                <Table className="max-w-4xl ml-auto mr-auto mt-4 rounded-full border mb-10">
                     <TableCaption>List of all the Students.</TableCaption>
                     <TableHeader>
                         <TableRow>
@@ -169,12 +182,11 @@ export function AllStudents() {
                             <TableHead className="">Course</TableHead>
                             <TableHead className="text-center">Edit</TableHead>
                             <TableHead className="text-center">Delete</TableHead>
-
                         </TableRow>
                     </TableHeader>
 
                     <TableBody>
-                        {allStudents.map((item: { _id: Key | null | undefined; fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: number) => (
+                        {filteredStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
                             <TableRow key={item._id}>
                                 <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                 <TableCell className="font-medium w-max">{item.fullname}</TableCell>
@@ -208,7 +220,7 @@ export function AllStudents() {
                                                             <SelectTrigger id="framework">
                                                                 <SelectValue placeholder="Select" />
                                                             </SelectTrigger>
-                                                            <SelectContent position="popper" >
+                                                            <SelectContent position="popper">
                                                                 <SelectItem value="MCA">MCA</SelectItem>
                                                                 <SelectItem value="B.Tech">B.Tech</SelectItem>
                                                                 <SelectItem value="MBA Tech">MBA Tech</SelectItem>
@@ -232,10 +244,10 @@ export function AllStudents() {
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                                <AlertDialogDescription1>
+                                                <AlertDialogDescription>
                                                     This action cannot be undone. This will permanently delete the
                                                     student and remove the data from our database.
-                                                </AlertDialogDescription1>
+                                                </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -250,11 +262,11 @@ export function AllStudents() {
                     <TableFooter>
                         <TableRow>
                             <TableCell colSpan={6}>Total Students</TableCell>
-                            <TableCell className="text-center">{allStudents.length}</TableCell>
+                            <TableCell className="text-center">{filteredStudents.length}</TableCell>
                         </TableRow>
                     </TableFooter>
                 </Table>
             </div>
         </motion.div>
-    )
+    );
 }

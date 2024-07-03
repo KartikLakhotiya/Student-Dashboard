@@ -17,7 +17,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { AlignJustify, LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
@@ -177,7 +177,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                                 </TableRow>
                                             </TableHeader>
                                             <TableBody>
-                                                {allStudents.map((item: { fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                                {allStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
                                                     <TableRow key={index}>
                                                         <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                                         <TableCell className="font-medium w-max">{item.fullname}</TableCell>
@@ -212,7 +212,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {allStudents.map((item: { username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                    {allStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                             <TableCell className="font-medium w-max">{item.username}</TableCell>
@@ -255,7 +255,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {filteredStudents.map((item: { fullname: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; course: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: number) => (
+                                    {filteredStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                             <TableCell className="font-medium w-max">{item.fullname}</TableCell>
