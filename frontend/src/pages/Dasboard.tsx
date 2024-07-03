@@ -26,8 +26,6 @@ import { Chart } from "react-google-charts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 import { Label } from "../components/ui/label"
 
-
-
 type CardProps = React.ComponentProps<typeof Card>
 
 export function Dashboard({ className, ...props }: CardProps) {
@@ -146,8 +144,8 @@ export function Dashboard({ className, ...props }: CardProps) {
                     </CardHeader>
                     <CardContent className="grid gap-4">
                         {
-                            details.map((item) => (
-                                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
+                            details.map((item, index) => (
+                                <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50" key={index}>
                                     <LucideCircleUser />
                                     <div className="flex-1 space-y-1">
                                         <p className="text-xl font-medium leading-none">
