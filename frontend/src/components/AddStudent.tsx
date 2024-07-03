@@ -33,9 +33,36 @@ export function AddStudent() {
         inputRef.current.focus();
     }
 
+    const checkUsernameExists = async (username: String) => {
+        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const allStudents = await response.json();
+        return allStudents.some((user: { username: String }) => user.username === username);
+
+    };
+
+    const checkEmailExists = async (email: String) => {
+        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const allStudents = await response.json();
+        return allStudents.some((user: { email: String }) => user.email === email);
+
+    };
 
 
     const { toast } = useToast()
+
+
 
     const submit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -60,6 +87,20 @@ export function AddStudent() {
             return
         }
 
+        // Checking if username already exists in the database.
+        const usernameExists = await checkUsernameExists(username);
+        if (usernameExists) {
+            toast({ variant: 'destructive', title: "Username Already Exists." })
+            return
+        }
+
+        // Checking email already exists.
+        const emailExists = await checkEmailExists(email);
+        if (emailExists) {
+            toast({ variant: 'destructive', title: "Email Already Exists." })
+            return
+        }
+
         const data = {
             'fullname': fullname,
             'username': username,
@@ -76,8 +117,8 @@ export function AddStudent() {
             body: JSON.stringify(data)
         });
 
-        const a = response.json()
-        console.log(a)
+        // const a = response.json()
+        // console.log(a)
 
         if (response.ok) {
             toast({
@@ -97,12 +138,12 @@ export function AddStudent() {
     useEffect(() => {
         focusInput();
     }, [])
-    
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 2 }}
         >
             <Card className="w-[450px] mr-auto ml-auto mt-4 mb-0 ">
                 <CardHeader>

@@ -30,7 +30,6 @@ import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from ".
 import { motion } from "framer-motion";
 
 
-
 export function AllStudents() {
 
     const [allStudents, setAllStudents] = useState<any>([]);
@@ -155,7 +154,7 @@ export function AllStudents() {
         <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 2 }}
         >
             <div className="">
                 <h1 className="flex flex-col items-center justify-center text-4xl mt-4 "></h1>

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/card"
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import { LucideCircleUser } from "lucide-react"
+import { Album, LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
 import { Chart } from "react-google-charts";
 
@@ -110,7 +110,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                             </div>
                         </div>
                         <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <LucideCircleUser />
+                            <Album />
                             <div className="flex-1 space-y-1">
                                 <p className="text-xl font-medium leading-none">
                                     MCA Students
@@ -121,7 +121,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                             </div>
                         </div>
                         <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <LucideCircleUser />
+                            <Album />
                             <div className="flex-1 space-y-1">
                                 <p className="text-xl font-medium leading-none">
                                     B.Tech Students
@@ -132,7 +132,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                             </div>
                         </div>
                         <div className="flex items-center space-x-4 rounded-md border p-4 hover:bg-muted/50">
-                            <LucideCircleUser />
+                            <Album />
                             <div className="flex-1 space-y-1">
                                 <p className="text-xl font-medium leading-none">
                                     MBA Tech Students
