@@ -15,6 +15,7 @@ import {
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
+    AlertDialogDescription1,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
@@ -186,7 +187,7 @@ export function AllStudents() {
                     </TableHeader>
 
                     <TableBody>
-                        {filteredStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
+                        {filteredStudents.map((item: { _id: string; fullname: string; username: string; email: string; course: string; }, index: number) => (
                             <TableRow key={item._id}>
                                 <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                 <TableCell className="font-medium w-max">{item.fullname}</TableCell>
@@ -200,7 +201,11 @@ export function AllStudents() {
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle className="text-2xl mb-4">Edit Student</AlertDialogTitle>
+                                                <AlertDialogTitle className="text-2xl mb-4">Edit Student
+                                                    <AlertDialogDescription1>
+                                                        <p>Student ID : {item._id}</p>
+                                                    </AlertDialogDescription1>
+                                                </AlertDialogTitle>
                                                 <AlertDialogDescription className="sm:text-left">
                                                     <div className="flex flex-col space-y-1.5 mb-4">
                                                         <Label htmlFor="name">Full Name</Label>
