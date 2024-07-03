@@ -21,7 +21,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Key, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useToast } from "../components/ui/use-toast";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
@@ -69,7 +69,7 @@ export function AllStudents() {
         });
     }
 
-    const editStudent = async (id: Key | null | undefined) => {
+    const editStudent = async (id: string) => {
         focusInput();
 
         toast({
@@ -108,7 +108,7 @@ export function AllStudents() {
         fetchAll();
     }
 
-    const deleteStudent = async (id: Key | null | undefined) => {
+    const deleteStudent = async (id: string) => {
         toast({
             variant: "destructive",
             title: "Deleting Student.",
