@@ -66,13 +66,13 @@ export function AllStudents() {
 
     const editStudent = async (id: string) => {
 
-        // username validation
+        // fullname validation
         if (fullname.trim() !== "") {
             const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
             if (specialChar) {
                 toast({
                     variant: 'destructive',
-                    title: 'Username cannot contain special characters.'
+                    title: 'Full Name cannot contain special characters.'
                 });
                 return;
             }
