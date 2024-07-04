@@ -92,9 +92,9 @@ export function FetchStudent() {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-            >
+        >
             <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-48">
-                <Card className="w-[450px] mr-auto ml-auto mt-8 md:w-[400px]">
+                <Card className="w-[430px] mr-auto ml-auto mt-8">
                     <CardHeader>
                         <CardTitle>Fetch Student</CardTitle>
                         <CardDescription>
@@ -134,7 +134,7 @@ export function FetchStudent() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 40 }}
                         transition={{ duration: 0.5 }}
-                        className="w-[450px] mr-auto ml-auto mt-8 "
+                        className="w-[430px] mr-auto ml-auto mt-8 "
                     >
                         <Card className="hover:scale-110 transition-scale-110 duration-300 ease-in-out">
                             <CardHeader>
