@@ -273,10 +273,10 @@ export function Dashboard({ className, ...props }: CardProps) {
 
             {/* Bottom Div */}
             <h1 className="flex justify-center items-center text-4xl mt-11 text-card-foreground font-bold" >Visualisation Charts</h1>
-            <div className="w-max lg:w-max h-[440px] lg:ml-8 lg:flex lg:justify-between">
+            <div className="w-max lg:w-max h-[430px] lg:ml-14 lg:flex lg:justify-between mb-20">
 
                 {/* Bar Chart */}
-                <Card className="w-max lg:w-max h-[440px] lg:ml-8 p-3 mt-8">
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 p-3 mt-8">
                     <Chart
                         chartType="BarChart"
                         width="100%"
@@ -287,7 +287,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                 </Card>
 
                 {/* Pie Chart */}
-                <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
                     <Chart
                         chartType="PieChart"
                         data={pie_data}
@@ -298,7 +298,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                 </Card>
 
                 {/* Column Chart */}
-                <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
                     <Chart
                         chartType="ColumnChart"
                         width="100%"
