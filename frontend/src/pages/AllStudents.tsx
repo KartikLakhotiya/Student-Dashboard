@@ -21,7 +21,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useToast } from "../components/ui/use-toast";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
@@ -40,12 +40,6 @@ export function AllStudents() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [course, setCourse] = useState("");
-
-    const inputRef = useRef<any>(null);
-
-    const focusInput = () => {
-        inputRef.current.focus();
-    }
 
     const fetchAll = async () => {
         toast({
@@ -71,7 +65,7 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: string) => {
-        focusInput();
+        // validation
 
         toast({
             variant: "success",
@@ -80,8 +74,8 @@ export function AllStudents() {
 
         const data = {
             "fullname": fullname,
-            "username": username,
-            "email": email,
+            "username": username.toLowerCase(),
+            "email": email.toLowerCase(),
             "course": course
         };
 
@@ -210,7 +204,7 @@ export function AllStudents() {
                                                 <AlertDialogDescription className="sm:text-left">
                                                     <div className="flex flex-col space-y-1.5 mb-4">
                                                         <Label htmlFor="name">Full Name</Label>
-                                                        <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} ref={inputRef} />
+                                                        <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
                                                     </div>
                                                     <div className="flex flex-col space-y-1.5 mb-4">
                                                         <Label htmlFor="name">Username</Label>

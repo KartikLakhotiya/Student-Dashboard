@@ -77,6 +77,17 @@ export function AddStudent() {
         if (email === "") return toast({ variant: 'destructive', title: "Email Cannot be Empty" })
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
 
+        // username validation
+        const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*/.test(username)
+        if (!specialChar) {
+            toast({
+                variant: 'destructive',
+                title: 'Username cannot contain Special Characters.'
+            })
+            return
+        }
+
+
         // email Validation
         //email
         var atIdx = email.indexOf("@")
@@ -84,6 +95,24 @@ export function AddStudent() {
         if (atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx) { }
         else {
             toast({ variant: "destructive", title: "Invalid Email Format." })
+            return
+        }
+
+        //password
+        var upper = /[A-Z]/.test(password)
+        var lower = /[a-z]/.test(password)
+        var number = /[0-9]/.test(password)
+        var special = /[!@#$%^&*()_+=-{}.,;'"]/.test(password)
+        var len = password.length
+        if (upper && lower && number && special && len >= 8) {
+            // password ok
+        }
+        else {
+            toast({
+                variant: 'destructive',
+                title: 'Incorrect Password',
+                description: 'Password should be minimum 8 characters containing lower case, upper case, number and special characters.'
+            })
             return
         }
 
