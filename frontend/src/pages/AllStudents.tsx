@@ -64,6 +64,14 @@ export function AllStudents() {
         });
     }
 
+    const checkEmailExists = (email: string) => {
+        return allStudents.some((user: { email: string }) => user.email === email);
+    }
+
+    const checkUsernameExists = (username: string) => {
+        return allStudents.some((user: { username: string }) => user.username === username)
+    }
+
     const editStudent = async (id: string) => {
 
         // fullname validation
@@ -112,6 +120,20 @@ export function AllStudents() {
             }
         } else {
             // console.log("Email field is empty.");
+        }
+
+        // Checking email already exists.
+        const emailExists = checkEmailExists(email);
+        if (emailExists) {
+            toast({ variant: 'destructive', title: "Email Already Exists." })
+            return
+        }
+
+        // Checking username already exists.
+        const usernameExists = checkUsernameExists(username);
+        if (usernameExists) {
+            toast({ variant: 'destructive', title: "Username Already Exists." })
+            return
         }
 
         toast({
