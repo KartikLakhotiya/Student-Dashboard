@@ -20,7 +20,7 @@ const Navbar = () => {
                     <button
                         data-collapse-toggle="navbar-default"
                         type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="navbar-default"
                         aria-expanded={isOpen}
                         onClick={() => setIsOpen(!isOpen)}
@@ -30,9 +30,9 @@ const Navbar = () => {
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     </button>
-                    <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-                        <div className="flex flex-col md:flex-row md:items-center">
-                            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  md:dark:bg-gray-900 dark:border-gray-700 mr-[21rem] md:w-max">
+                    <div className={`${isOpen ? 'block' : 'hidden'} w-full lg:block lg:w-auto`} id="navbar-default">
+                        <div className="flex flex-col lg:flex-row lg:items-center">
+                            <ul className="font-medium flex flex-col p-4 lg:p-0 mt-4 rounded-lg  lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0  lg:dark:bg-gray-900 dark:border-gray-700 mr-[21rem] lg:w-max">
                                 <li>
                                     <Link to='/'><Button variant="outline" onClick={() => setIsOpen(false)}>HOME</Button></Link>
                                 </li>
