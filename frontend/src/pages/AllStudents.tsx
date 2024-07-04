@@ -36,7 +36,7 @@ export function AllStudents() {
     const [filteredStudents, setFilteredStudents] = useState<any>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const { toast } = useToast();
-    const [fullname, setFullname] = useState("");
+    let [fullname, setFullname] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [course, setCourse] = useState("");
@@ -65,6 +65,22 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: string) => {
+
+        // username validation
+        if (fullname.trim() !== "") {
+            const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
+            if (specialChar) {
+                toast({
+                    variant: 'destructive',
+                    title: 'Username cannot contain special characters.'
+                });
+                return;
+            }
+
+            fullname = fullname.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
 
         // username validation
         if (username.trim() !== "") {

@@ -133,7 +133,7 @@ export function AddStudent() {
         }
 
         const data = {
-            'fullname': fullname,
+            'fullname': fullname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
             'username': username.toLowerCase(),
             'email': email.toLowerCase(),
             'password': password,
