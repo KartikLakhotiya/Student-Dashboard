@@ -36,7 +36,7 @@ export function AllStudents() {
     const [filteredStudents, setFilteredStudents] = useState<any>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const { toast } = useToast();
-    let [fullname, setFullname] = useState("");
+    const [fullname, setFullname] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [course, setCourse] = useState("");
@@ -76,10 +76,6 @@ export function AllStudents() {
                 });
                 return;
             }
-
-            fullname = fullname.split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
         }
 
         // username validation
@@ -115,7 +111,7 @@ export function AllStudents() {
         });
 
         const data = {
-            "fullname": fullname,
+            "fullname": fullname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
             "username": username.toLowerCase(),
             "email": email.toLowerCase(),
             "course": course
