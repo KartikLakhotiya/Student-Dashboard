@@ -169,24 +169,30 @@ export function Dashboard({ className, ...props }: CardProps) {
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className="text-2xl mb-4">All Students List</AlertDialogTitle>
                                     <AlertDialogDescription className="sm:text-left">
-                                        <Table>
-                                            <TableHeader>
-                                                <TableRow>
-                                                    <TableHead className="w-20">Sr No.</TableHead>
-                                                    <TableHead className="w-max">Full Name</TableHead>
-                                                    <TableHead className="w-max">Course</TableHead>
-                                                </TableRow>
-                                            </TableHeader>
-                                            <TableBody>
-                                                {allStudents.map((item: Student, index: number) => (
-                                                    <TableRow key={index}>
-                                                        <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                                        <TableCell className="font-medium w-max">{item.fullname}</TableCell>
-                                                        <TableCell className="font-medium w-max">{item.course}</TableCell>
+                                        <motion.div
+                                            initial={{ opacity: 0.5, y: 0 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 3 }}
+                                        >
+                                            <Table>
+                                                <TableHeader>
+                                                    <TableRow>
+                                                        <TableHead className="w-20">Sr No.</TableHead>
+                                                        <TableHead className="w-max">Full Name</TableHead>
+                                                        <TableHead className="w-max">Course</TableHead>
                                                     </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
+                                                </TableHeader>
+                                                <TableBody>
+                                                    {allStudents.map((item: Student, index: number) => (
+                                                        <TableRow key={index}>
+                                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                                            <TableCell className="font-medium w-max">{item.fullname}</TableCell>
+                                                            <TableCell className="font-medium w-max">{item.course}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </motion.div>
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
@@ -204,24 +210,30 @@ export function Dashboard({ className, ...props }: CardProps) {
                     </CardHeader>
                     <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
                         <div className="flex space-x-4 rounded-md border p-4">
-                            <Table className="w-full">
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead className="w-20">Sr No.</TableHead>
-                                        <TableHead className="w-max">Username</TableHead>
-                                        <TableHead className="w-max">Email</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {allStudents.map((item: Student, index: number) => (
-                                        <TableRow key={index}>
-                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                            <TableCell className="font-medium w-max">{item.username}</TableCell>
-                                            <TableCell className="font-medium w-max">{item.email}</TableCell>
+                            <motion.div
+                                initial={{ opacity: 0, y: 0 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 3 }}
+                            >
+                                <Table className="w-full">
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className="w-20">Sr No.</TableHead>
+                                            <TableHead className="w-max">Username</TableHead>
+                                            <TableHead className="w-max">Email</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {allStudents.map((item: Student, index: number) => (
+                                            <TableRow key={index}>
+                                                <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                                <TableCell className="font-medium w-max">{item.username}</TableCell>
+                                                <TableCell className="font-medium w-max">{item.email}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </motion.div>
                         </div>
                     </CardContent>
                 </Card>
