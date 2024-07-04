@@ -313,10 +313,10 @@ export function AllStudents() {
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                                <AlertDialogDescription>
+                                                <AlertDialogDescription1>
                                                     This action cannot be undone. This will permanently delete the
                                                     student and remove the data from our database.
-                                                </AlertDialogDescription>
+                                                </AlertDialogDescription1>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancel</AlertDialogCancel>

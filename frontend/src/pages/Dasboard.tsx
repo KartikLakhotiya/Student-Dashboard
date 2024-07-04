@@ -275,7 +275,6 @@ export function Dashboard({ className, ...props }: CardProps) {
             <h1 className="flex justify-center items-center text-4xl mt-11 text-card-foreground font-bold" >Visualisation Charts</h1>
             <div className="w-max lg:w-max h-[440px] lg:ml-8 p-4 lg:flex">
 
-
                 {/* Bar Chart */}
                 <Card className="w-max lg:w-max h-[440px] lg:ml-8 mt-8 p-4">
                     <Chart

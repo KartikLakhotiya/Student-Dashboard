@@ -17,11 +17,13 @@ https://student-dashboard-swart.vercel.app/
 
 ## Features
 
-- Add A Student
+- Add A Student.
+- Search Students.
 - Dashboard displaying student information.
-- Fetch Details of Student
-- Edit and Delete Student
-- Responsive design
+- Visulization charts analyzing student data.
+- Fetch Details of Student.
+- Edit and Delete Student.
+- Responsive design.
 
 ## Tech Stack
 
@@ -71,7 +73,7 @@ Ensure you have the following :
    PORT=5000
    MONGO_URI="your_mongo_atlas_connection_string"
    ```
-4. Also replace `https://student-dashboard-xvbg.onrender.com` with `http://localhost:5000` during local deployment.
+4. Also replace `https://student-dashboard-xvbg.onrender.com`(this my server link which is deployed on render) with `http://localhost:5000` during local deployment.
 
 ## Running the Application
 
@@ -97,6 +99,6 @@ For questions or support, please open an issue in this repository.
 
 ---
 
-Please leave a star. Happy Coding.
+Please leave a Star. Happy Coding.
 
 ---
