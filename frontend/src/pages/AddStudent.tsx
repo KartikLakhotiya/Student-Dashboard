@@ -186,7 +186,7 @@ export function AddStudent() {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-        >
+            >
             <Card className="w-[450px] mr-auto ml-auto mt-4 mb-0 ">
                 <CardHeader>
                     <CardTitle>Create Student</CardTitle>

@@ -92,7 +92,7 @@ export function FetchStudent() {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-        >
+            >
             <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-48">
                 <Card className="w-[450px] mr-auto ml-auto mt-8 md:w-[400px]">
                     <CardHeader>

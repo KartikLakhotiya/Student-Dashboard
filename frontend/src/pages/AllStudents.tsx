@@ -64,13 +64,13 @@ export function AllStudents() {
         });
     }
 
-    const checkEmailExists = (email: string) => {
-        return allStudents.some((user: { email: string }) => user.email === email);
-    }
+    // const checkEmailExists = (email: string) => {
+    //     return allStudents.some((user: { email: string }) => user.email === email);
+    // }
 
-    const checkUsernameExists = (username: string) => {
-        return allStudents.some((user: { username: string }) => user.username === username)
-    }
+    // const checkUsernameExists = (username: string) => {
+    //     return allStudents.some((user: { username: string }) => user.username === username)
+    // }
 
     const editStudent = async (id: string) => {
 
@@ -123,18 +123,18 @@ export function AllStudents() {
         }
 
         // Checking email already exists.
-        const emailExists = checkEmailExists(email);
-        if (emailExists) {
-            toast({ variant: 'destructive', title: "Email Already Exists." })
-            return
-        }
+        // const emailExists = checkEmailExists(email);
+        // if (emailExists) {
+        //     toast({ variant: 'destructive', title: "Email Already Exists." })
+        //     return
+        // }
 
-        // Checking username already exists.
-        const usernameExists = checkUsernameExists(username);
-        if (usernameExists) {
-            toast({ variant: 'destructive', title: "Username Already Exists." })
-            return
-        }
+        // // Checking username already exists.
+        // const usernameExists = checkUsernameExists(username);
+        // if (usernameExists) {
+        //     toast({ variant: 'destructive', title: "Username Already Exists." })
+        //     return
+        // }
 
         toast({
             variant: "success",
@@ -219,7 +219,7 @@ export function AllStudents() {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-        >
+            >
             <div className="">
                 <h1 className="flex flex-col items-center justify-center text-4xl mt-4 font-bold ">ALL STUDENTS</h1>
                 <div className="flex justify-center mt-4">

@@ -131,7 +131,7 @@ export function Dashboard({ className, ...props }: CardProps) {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-        >
+            >
             {/* Top Div */}
             <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8">
 
