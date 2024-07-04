@@ -4,7 +4,7 @@ export const fetchAll = async (req, res) => {
     try {
         const allUsers = await Student.find().select('-password');
         const count = await Student.countDocuments()
-        res.status(201).json(allUsers);
+        res.status(200).json(allUsers);
     }
     catch (error) {
         console.log(error)
