@@ -24,6 +24,7 @@ import { motion } from "framer-motion";
 import { Chart } from "react-google-charts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 import { Label } from "../components/ui/label"
+import { Student } from "@/types/types";
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -48,11 +49,8 @@ export function Dashboard({ className, ...props }: CardProps) {
     }
 
     const MCA_Count = allStudents.filter((item: { course: string; }) => item.course === 'MCA');
-
     const btech_Count = allStudents.filter((item: { course: string; }) => item.course === 'B.Tech');
-
     const mbatech_Count = allStudents.filter((item: { course: string; }) => item.course === 'MBA Tech');
-
     const filteredStudents = selectedCourse === "All" ? allStudents : allStudents.filter((item: { course: string }) => item.course === selectedCourse);
 
     const details = [
@@ -177,7 +175,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                                 </TableRow>
                                             </TableHeader>
                                             <TableBody>
-                                                {allStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
+                                                {allStudents.map((item: Student, index: number) => (
                                                     <TableRow key={index}>
                                                         <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                                         <TableCell className="font-medium w-max">{item.fullname}</TableCell>
@@ -212,7 +210,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {allStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
+                                    {allStudents.map((item: Student, index: number) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                             <TableCell className="font-medium w-max">{item.username}</TableCell>
@@ -255,7 +253,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {filteredStudents.map((item: { _id: Key | null | undefined; fullname: string; username: string; email: string; course: string; }, index: number) => (
+                                    {filteredStudents.map((item: Student, index: number) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                             <TableCell className="font-medium w-max">{item.fullname}</TableCell>

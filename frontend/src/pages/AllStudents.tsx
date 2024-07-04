@@ -29,6 +29,7 @@ import { Input } from "../components/ui/input";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "../components/ui/select";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
+import { Student } from "@/types/types";
 
 export function AllStudents() {
     const [allStudents, setAllStudents] = useState<any>([]);
@@ -187,7 +188,7 @@ export function AllStudents() {
                     </TableHeader>
 
                     <TableBody>
-                        {filteredStudents.map((item: { _id: string; fullname: string; username: string; email: string; course: string; }, index: number) => (
+                        {filteredStudents.map((item: Student, index: number) => (
                             <TableRow key={item._id}>
                                 <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                 <TableCell className="font-medium w-max">{item.fullname}</TableCell>
