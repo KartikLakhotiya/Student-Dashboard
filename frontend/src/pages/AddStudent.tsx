@@ -78,14 +78,15 @@ export function AddStudent() {
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
 
         // username validation
-        const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*/.test(username)
-        if (!specialChar) {
+        const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
+        if (specialChar) {
             toast({
                 variant: 'destructive',
-                title: 'Username cannot contain Special Characters.'
-            })
-            return
+                title: 'Username cannot contain special characters.'
+            });
+            return;
         }
+
 
 
         // email Validation

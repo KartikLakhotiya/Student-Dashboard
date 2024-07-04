@@ -65,7 +65,33 @@ export function AllStudents() {
     }
 
     const editStudent = async (id: string) => {
-        // validation
+
+        // username validation
+        if (username.trim() !== "") {
+            const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
+            if (specialChar) {
+                toast({
+                    variant: 'destructive',
+                    title: 'Username cannot contain special characters.'
+                });
+                return;
+            }
+        }
+
+
+        // email Validation
+        if (email.trim() !== "") {
+            var atIdx = email.indexOf("@");
+            var dotIdx = email.indexOf(".");
+            if (atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx) {
+                // Email format is valid
+            } else {
+                toast({ variant: "destructive", title: "Invalid Email Format." });
+                return;
+            }
+        } else {
+            // console.log("Email field is empty.");
+        }
 
         toast({
             variant: "success",
