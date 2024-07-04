@@ -78,6 +78,17 @@ export function AddStudent() {
         if (password === "") return toast({ variant: 'destructive', title: "Password Cannot be Empty" })
         if (course === "") return toast({ variant: 'destructive', title: "Please select a course" })
 
+        // fullname validation
+        var number = /[0-9]/.test(fullname)
+        console.log('fullname validation', number)
+        if (number) {
+            toast({
+                variant: 'destructive',
+                title: 'Fullname cannot contain any numbers.'
+            })
+            return
+        }
+
         // username validation
         const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
         if (specialChar) {

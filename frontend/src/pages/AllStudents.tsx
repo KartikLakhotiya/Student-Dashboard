@@ -68,6 +68,15 @@ export function AllStudents() {
 
         // fullname validation
         if (fullname.trim() !== "") {
+            var number = /[0-9]/.test(fullname)
+            console.log('fullname validation', number)
+            if (number) {
+                toast({
+                    variant: 'destructive',
+                    title: 'Fullname cannot contain any numbers.'
+                })
+                return
+            }
             const specialChar1 = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(fullname);
             if (specialChar1) {
                 toast({
