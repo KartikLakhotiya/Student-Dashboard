@@ -134,9 +134,9 @@ export function FetchStudent() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 40 }}
                         transition={{ duration: 0.5 }}
-                        className="w-[450px] mr-auto ml-auto mt-8"
+                        className="w-[450px] mr-auto ml-auto mt-8 "
                     >
-                        <Card>
+                        <Card className="hover:scale-110 transition-scale-110 duration-300 ease-in-out">
                             <CardHeader>
                                 <CardTitle>Student Found</CardTitle>
                                 <CardDescription>
