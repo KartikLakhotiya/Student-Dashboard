@@ -68,8 +68,8 @@ export function AllStudents() {
 
         // fullname validation
         if (fullname.trim() !== "") {
-            const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(username);
-            if (specialChar) {
+            const specialChar1 = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(fullname);
+            if (specialChar1) {
                 toast({
                     variant: 'destructive',
                     title: 'Full Name cannot contain special characters.'
