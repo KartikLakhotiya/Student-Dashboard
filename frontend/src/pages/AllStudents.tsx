@@ -41,6 +41,8 @@ export function AllStudents() {
     const [email, setEmail] = useState("");
     const [course, setCourse] = useState("");
 
+    const adminDeviceId = import.meta.env.VITE_SECURE_ADMIN_TOKEN;
+
     const fetchAll = async () => {
         toast({
             variant: "default",
@@ -64,20 +66,19 @@ export function AllStudents() {
         });
     }
 
-    // const checkEmailExists = (email: string) => {
-    //     return allStudents.some((user: { email: string }) => user.email === email);
-    // }
-
-    // const checkUsernameExists = (username: string) => {
-    //     return allStudents.some((user: { username: string }) => user.username === username)
-    // }
-
     const editStudent = async (id: string) => {
+        const deviceId = localStorage.getItem("device_id");
+        if (deviceId !== adminDeviceId) {
+            toast({
+                variant: 'destructive',
+                title: 'Unauthorized device.',
+            });
+            return;
+        }
 
         // fullname validation
         if (fullname.trim() !== "") {
             var number = /[0-9]/.test(fullname)
-            console.log('fullname validation', number)
             if (number) {
                 toast({
                     variant: 'destructive',
@@ -107,7 +108,6 @@ export function AllStudents() {
             }
         }
 
-
         // email Validation
         if (email.trim() !== "") {
             var atIdx = email.indexOf("@");
@@ -118,23 +118,7 @@ export function AllStudents() {
                 toast({ variant: "destructive", title: "Invalid Email Format." });
                 return;
             }
-        } else {
-            // console.log("Email field is empty.");
         }
-
-        // Checking email already exists.
-        // const emailExists = checkEmailExists(email);
-        // if (emailExists) {
-        //     toast({ variant: 'destructive', title: "Email Already Exists." })
-        //     return
-        // }
-
-        // // Checking username already exists.
-        // const usernameExists = checkUsernameExists(username);
-        // if (usernameExists) {
-        //     toast({ variant: 'destructive', title: "Username Already Exists." })
-        //     return
-        // }
 
         toast({
             variant: "success",
@@ -173,6 +157,15 @@ export function AllStudents() {
     }
 
     const deleteStudent = async (id: string) => {
+        const deviceId = localStorage.getItem("device_id");
+        if (deviceId !== adminDeviceId) {
+            toast({
+                variant: 'destructive',
+                title: 'Unauthorized device.',
+            });
+            return;
+        }
+
         toast({
             variant: "destructive",
             title: "Deleting Student.",
@@ -202,6 +195,7 @@ export function AllStudents() {
 
     useEffect(() => {
         fetchAll();
+        localStorage.setItem("device_id", adminDeviceId);
     }, []);
 
     useEffect(() => {
