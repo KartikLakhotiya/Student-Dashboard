@@ -28,6 +28,7 @@ import { Chart } from "react-google-charts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 import { Label } from "../components/ui/label"
 import { Student } from "@/types/types";
+import Navbar from "@/components/navbar";
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -132,6 +133,7 @@ export function Dashboard({ className, ...props }: CardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
         >
+            <Navbar />
             {/* Top Div */}
             <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8">
 
@@ -169,30 +171,24 @@ export function Dashboard({ className, ...props }: CardProps) {
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className="text-2xl mb-4">All Students List</AlertDialogTitle>
                                     <AlertDialogDescription className="sm:text-left">
-                                        <motion.div
-                                            initial={{ opacity: 0.5, y: 0 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 3 }}
-                                        >
-                                            <Table>
-                                                <TableHeader>
-                                                    <TableRow>
-                                                        <TableHead className="w-20">Sr No.</TableHead>
-                                                        <TableHead className="w-max">Full Name</TableHead>
-                                                        <TableHead className="w-max">Course</TableHead>
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead className="w-20">Sr No.</TableHead>
+                                                    <TableHead className="w-max">Full Name</TableHead>
+                                                    <TableHead className="w-max">Course</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {allStudents.map((item: Student, index: number) => (
+                                                    <TableRow key={index}>
+                                                        <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                                        <TableCell className="font-medium w-max">{item.fullname}</TableCell>
+                                                        <TableCell className="font-medium w-max">{item.course}</TableCell>
                                                     </TableRow>
-                                                </TableHeader>
-                                                <TableBody>
-                                                    {allStudents.map((item: Student, index: number) => (
-                                                        <TableRow key={index}>
-                                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                                            <TableCell className="font-medium w-max">{item.fullname}</TableCell>
-                                                            <TableCell className="font-medium w-max">{item.course}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </motion.div>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>

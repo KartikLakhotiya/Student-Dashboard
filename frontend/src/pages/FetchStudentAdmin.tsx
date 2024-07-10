@@ -8,13 +8,21 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
-import Navbar from "@/components/navbar";
 
-export function FetchStudent() {
+export function FetchStudentAdmin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [student, setStudent] = useState<any>(null);
@@ -95,7 +103,7 @@ export function FetchStudent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
         >
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-48">
                 <Card className="w-[430px] mr-auto ml-auto mt-8">
                     <CardHeader>
@@ -125,48 +133,62 @@ export function FetchStudent() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <Button type="submit">Submit</Button>
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                        <Button variant="default" className="">Submit</Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogDescription className="sm:text-left">
+                                                {student && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        animate={{ opacity: 1, y: 40 }}
+                                                        transition={{ duration: 0.5 }}
+                                                        className="w-[430px] "
+                                                    >
+                                                        <Card className="mb-11">
+                                                            <CardHeader>
+                                                                <CardTitle>Student Found</CardTitle>
+                                                                <CardDescription>
+                                                                    Fetched details of student from the Database.
+                                                                </CardDescription>
+                                                            </CardHeader>
+                                                            <CardContent>
+                                                                <div className="grid w-full items-center">
+                                                                    <div className="flex flex-col space-y-1.5">
+                                                                        <Label htmlFor="name" className="text-lg">
+                                                                            Full Name : {student.fullname}
+                                                                        </Label>
+                                                                        <Label htmlFor="name" className="text-lg">
+                                                                            Username : {student.username}
+                                                                        </Label>
+                                                                        <Label htmlFor="name" className="text-lg">
+                                                                            Email : {student.email}
+                                                                        </Label>
+                                                                        <Label htmlFor="name" className="text-lg">
+                                                                            Course : {student.course}
+                                                                        </Label>
+                                                                    </div>
+                                                                </div>
+                                                            </CardContent>
+                                                        </Card>
+                                                    </motion.div>
+                                                )}
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </div>
                         </form>
                     </CardContent>
                     <CardFooter className="flex justify-center"></CardFooter>
                 </Card>
 
-                {student && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 40 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-[430px] mr-auto ml-auto mt-8 "
-                    >
-                        <Card className="hover:scale-110 transition-scale-110 duration-300 ease-in-out">
-                            <CardHeader>
-                                <CardTitle>Student Found</CardTitle>
-                                <CardDescription>
-                                    Fetched details of student from the Database.
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="grid w-full items-center">
-                                    <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="name" className="text-lg">
-                                            Full Name : {student.fullname}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Username : {student.username}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Email : {student.email}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Course : {student.course}
-                                        </Label>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                )}
+
             </div>
         </motion.div>
     );

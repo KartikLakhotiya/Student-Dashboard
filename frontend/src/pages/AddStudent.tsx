@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { motion } from "framer-motion";
+import Navbar from "@/components/navbar"
 
 
 export function AddStudent() {
@@ -187,6 +188,7 @@ export function AddStudent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
         >
+            <Navbar />
             <Card className="w-[430px] mr-auto ml-auto mt-4 mb-0 ">
                 <CardHeader>
                     <CardTitle>Create Student</CardTitle>

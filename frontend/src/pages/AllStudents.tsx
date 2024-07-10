@@ -30,6 +30,7 @@ import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from ".
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { Student } from "@/types/types";
+import Navbar from "@/components/navbar";
 
 export function AllStudents() {
     const [allStudents, setAllStudents] = useState<any>([]);
@@ -214,6 +215,7 @@ export function AllStudents() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
         >
+            <Navbar />
             <div className="">
                 <h1 className="flex flex-col items-center justify-center text-4xl mt-4 font-bold ">ALL STUDENTS</h1>
                 <div className="flex justify-center mt-4">
@@ -272,19 +274,19 @@ export function AllStudents() {
                                                     <AlertDialogDescription className="sm:text-left">
                                                         <div className="flex flex-col space-y-1.5 mb-4">
                                                             <Label htmlFor="name">Full Name</Label>
-                                                            <Input placeholder="Enter Your Full Name" onChange={(e) => setFullname(e.target.value)} />
+                                                            <Input placeholder="Enter Your Full Name" value={item.fullname} onChange={(e) => setFullname(e.target.value)} />
                                                         </div>
                                                         <div className="flex flex-col space-y-1.5 mb-4">
                                                             <Label htmlFor="name">Username</Label>
-                                                            <Input placeholder="Enter Your Username" onChange={(e) => setUsername(e.target.value)} />
+                                                            <Input placeholder="Enter Your Username" value={item.username} onChange={(e) => setUsername(e.target.value)} />
                                                         </div>
                                                         <div className="flex flex-col space-y-1.5 mb-4">
                                                             <Label htmlFor="name">Email</Label>
-                                                            <Input placeholder="Enter Your New Email" onChange={(e) => setEmail(e.target.value)} />
+                                                            <Input placeholder="Enter Your New Email" value={item.email} onChange={(e) => setEmail(e.target.value)} />
                                                         </div>
                                                         <div className="flex flex-col space-y-1.5 mb-4">
                                                             <Label htmlFor="name">Course</Label>
-                                                            <Select onValueChange={(value) => setCourse(value)}>
+                                                            <Select onValueChange={(value) => setCourse(value)} value={item.course}>
                                                                 <SelectTrigger id="framework">
                                                                     <SelectValue placeholder="Select" />
                                                                 </SelectTrigger>

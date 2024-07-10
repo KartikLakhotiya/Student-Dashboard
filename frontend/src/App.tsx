@@ -1,6 +1,5 @@
 import './App.css'
 import { AddStudent } from './pages/AddStudent'
-import Navbar from './components/navbar'
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from './components/ui/toaster'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { FetchStudent } from './pages/FetchStudent'
 import { Dashboard } from './pages/Dasboard'
 import { AllStudents } from './pages/AllStudents'
 import { motion } from "framer-motion";
+import Sidebar from './components/Sidebar'
 
 function App() {
 
@@ -19,12 +19,13 @@ function App() {
     >
       <Router>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <Navbar />
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/create' element={<AddStudent />} />
             <Route path='/fetch' element={<FetchStudent />} />
             <Route path='/allstudents' element={<AllStudents />} />
+            <Route path='/admin' element={<Sidebar />} />
+
           </Routes>
           <Toaster />
         </ThemeProvider>
