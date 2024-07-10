@@ -8,6 +8,8 @@ import { Dashboard } from './pages/Dasboard'
 import { AllStudents } from './pages/AllStudents'
 import { motion } from "framer-motion";
 import Sidebar from './components/Sidebar'
+import { AddStudentAdmin } from './pages/AddStudentAdmin';
+import { FetchStudentAdmin } from './pages/FetchStudentAdmin';
 
 function App() {
 
@@ -25,7 +27,8 @@ function App() {
             <Route path='/fetch' element={<FetchStudent />} />
             <Route path='/allstudents' element={<AllStudents />} />
             <Route path='/admin' element={<Sidebar />} />
-
+            <Route path='/createstudent' element={<AddStudentAdmin />} />
+            <Route path='/fetchadmin' element={<FetchStudentAdmin />} />
           </Routes>
           <Toaster />
         </ThemeProvider>
