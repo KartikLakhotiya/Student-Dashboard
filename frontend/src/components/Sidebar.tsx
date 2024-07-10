@@ -27,8 +27,6 @@ import { useToast } from "./ui/use-toast";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
-import { AddStudent } from "@/pages/AddStudent";
-import { FetchStudentAdmin } from "@/pages/FetchStudentAdmin";
 
 
 const Sidebar = () => {
@@ -483,14 +481,14 @@ const Sidebar = () => {
 
                     
 
-                    <div className="grid grid-cols-2 gap-4">
+                    {/* <div className="grid grid-cols-2 gap-4">
                         <div className="flex justify-center items-center rounded bg-gray-50 h-auto dark:bg-gray-900 pb-4">
-                            <AddStudent/>
+                            // {/* <AddStudent/>
                         </div>
                         <div className="flex items-center justify-center rounded bg-gray-50 h-auto dark:bg-gray-900">
                             <FetchStudentAdmin/>
                         </div>
-                    </div>
+                    </div> */}
 
 
                     {/* All Students */}
