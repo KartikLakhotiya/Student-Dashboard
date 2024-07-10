@@ -424,7 +424,7 @@ const Sidebar = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-center rounded bg-gray-50 h-auto dark:bg-gray-900">
-                                    <div className="mr-16">
+                                    <div className="ml-auto mr-auto">
                                         <Chart
                                             chartType="PieChart"
                                             data={pie_data}
