@@ -2,10 +2,26 @@ import { Link } from "react-router-dom";
 import { AvatarDemo } from "./avatar";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "@/components/ui/button";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [admin, setAdmin] = useState(false);
+
+    const adminDeviceId = import.meta.env.VITE_SECURE_ADMIN_TOKEN;
+
+    const fn = () => {
+        const deviceId = localStorage.getItem("device_id");
+        if (deviceId === adminDeviceId) {
+            setAdmin(true)
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem("device_id", adminDeviceId);
+        fn();
+    }, [adminDeviceId])
+
 
     return (
         <div>
@@ -45,6 +61,9 @@ const Navbar = () => {
                                 <li>
                                     <Link to='/allstudents'><Button variant="outline" onClick={() => setIsOpen(false)}>ALL STUDENTS</Button></Link>
                                 </li>
+                                {admin ? <li>
+                                    <Link to='/admin'><Button variant="outline" onClick={() => setIsOpen(false)}>ADMIN</Button></Link>
+                                </li> : ""}
                             </ul>
                             <div className="ml-auto md:ml-0">
                                 <ModeToggle />
