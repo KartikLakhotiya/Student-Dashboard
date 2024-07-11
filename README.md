@@ -22,7 +22,7 @@ https://student-dashboard-swart.vercel.app/
 - Dashboard displaying student information.
 - Visulization charts analyzing student data.
 - Fetch Details of Student.
-- Edit and Delete Student.
+- Edit and Delete Student only available on local deployment.
 - Responsive design.
 
 ## Tech Stack
