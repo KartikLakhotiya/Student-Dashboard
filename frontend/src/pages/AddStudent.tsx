@@ -35,7 +35,7 @@ export function AddStudent() {
     }
 
     const checkUsernameExists = async (username: String) => {
-        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
+        const response = await fetch('https://student-dashboard-ssei.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ export function AddStudent() {
     };
 
     const checkEmailExists = async (email: String) => {
-        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
+        const response = await fetch('https://student-dashboard-ssei.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -152,7 +152,7 @@ export function AddStudent() {
             'course': course,
         };
 
-        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/add', {
+        const response = await fetch('https://student-dashboard-ssei.onrender.com/api/auth/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

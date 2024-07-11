@@ -49,7 +49,7 @@ export function AllStudents() {
             variant: "default",
             title: "Fetching Students Data.",
         });
-        const response = await fetch('https://student-dashboard-xvbg.onrender.com/api/auth/all', {
+        const response = await fetch('https://student-dashboard-ssei.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ export function AllStudents() {
             "course": course
         };
 
-        const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/edit/${id}`, {
+        const response = await fetch(`https://student-dashboard-ssei.onrender.com/api/auth/edit/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ export function AllStudents() {
         });
 
         try {
-            const response = await fetch(`https://student-dashboard-xvbg.onrender.com/api/auth/delete/${id}`, {
+            const response = await fetch(`https://student-dashboard-ssei.onrender.com/api/auth/delete/${id}`, {
                 method: 'DELETE',
             });
 
