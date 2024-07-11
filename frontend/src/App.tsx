@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FetchStudent } from './pages/FetchStudent'
 import { Dashboard } from './pages/Dasboard'
 import { AllStudents } from './pages/AllStudents'
-import { motion } from "framer-motion";
 import Sidebar from './components/Sidebar'
 import { AddStudentAdmin } from './pages/AddStudentAdmin';
 import { FetchStudentAdmin } from './pages/FetchStudentAdmin';
@@ -14,11 +13,6 @@ import { FetchStudentAdmin } from './pages/FetchStudentAdmin';
 function App() {
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 0 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 2 }}
-    >
       <Router>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Routes>
@@ -33,7 +27,6 @@ function App() {
           <Toaster />
         </ThemeProvider>
       </Router>
-    </motion.div>
   )
 }
 
