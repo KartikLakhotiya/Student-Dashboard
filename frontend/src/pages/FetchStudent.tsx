@@ -149,18 +149,18 @@ export function FetchStudent() {
                             <CardContent>
                                 <div className="grid w-full items-center">
                                     <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="name" className="text-lg">
-                                            Full Name : {student.fullname}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Username : {student.username}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Email : {student.email}
-                                        </Label>
-                                        <Label htmlFor="name" className="text-lg">
-                                            Course : {student.course}
-                                        </Label>
+                                        <p className="text-lg">
+                                            Full Name : <b>{student.fullname}</b>
+                                        </p>
+                                        <p className="text-lg">
+                                            Username : <b>{student.fullname}</b>
+                                        </p>
+                                        <p className="text-lg">
+                                            Email : <b>{student.email}</b>
+                                        </p>
+                                        <p className="text-lg">
+                                            Course : <b>{student.course}</b>
+                                        </p>
                                     </div>
                                 </div>
                             </CardContent>
