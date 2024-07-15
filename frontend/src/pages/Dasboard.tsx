@@ -135,7 +135,7 @@ export function Dashboard({ className, ...props }: CardProps) {
         >
             <Navbar />
             {/* Top Div */}
-            <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8">
+            <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8 p-1">
 
                 {/* Details Card */}
 
@@ -200,36 +200,31 @@ export function Dashboard({ className, ...props }: CardProps) {
                 </Card>
 
                 {/* All Students Credentials Card */}
-                <Card className="w-full lg:w-[500px] lg:ml-8 mt-8">
+                <Card className="w-full lg:w-[500px] h-[500px] lg:ml-8 mt-8">
                     <CardHeader>
                         <CardTitle className="text-center">Student Credentials</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
+                        
                         <div className="flex space-x-4 rounded-md border p-4">
-                            <motion.div
-                                initial={{ opacity: 0, y: 0 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 3 }}
-                            >
-                                <Table className="w-full">
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead className="w-20">Sr No.</TableHead>
-                                            <TableHead className="w-max">Username</TableHead>
-                                            <TableHead className="w-max">Email</TableHead>
+                            <Table className="w-full">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="w-20">Sr No.</TableHead>
+                                        <TableHead className="w-max">Username</TableHead>
+                                        <TableHead className="w-max">Email</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {allStudents.map((item: Student, index: number) => (
+                                        <TableRow key={index}>
+                                            <TableCell className="font-medium w-max">{index + 1}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.username}</TableCell>
+                                            <TableCell className="font-medium w-max">{item.email}</TableCell>
                                         </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {allStudents.map((item: Student, index: number) => (
-                                            <TableRow key={index}>
-                                                <TableCell className="font-medium w-max">{index + 1}</TableCell>
-                                                <TableCell className="font-medium w-max">{item.username}</TableCell>
-                                                <TableCell className="font-medium w-max">{item.email}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </motion.div>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </div>
                     </CardContent>
                 </Card>
