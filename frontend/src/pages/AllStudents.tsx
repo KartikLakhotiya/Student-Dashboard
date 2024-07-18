@@ -72,7 +72,8 @@ export function AllStudents() {
         if (deviceId !== adminDeviceId) {
             toast({
                 variant: 'destructive',
-                title: 'Unauthorized device.',
+                title:'Error',
+                description: 'Operation Can only be done by Admin.',
             });
             return;
         }
@@ -162,7 +163,8 @@ export function AllStudents() {
         if (deviceId !== adminDeviceId) {
             toast({
                 variant: 'destructive',
-                title: 'Unauthorized device.',
+                title:'Error',
+                description: 'Operation Can only be done by Admin.',
             });
             return;
         }

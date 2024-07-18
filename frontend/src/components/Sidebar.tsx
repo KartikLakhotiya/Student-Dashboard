@@ -70,7 +70,8 @@ const Sidebar = () => {
         if (deviceId !== adminDeviceId) {
             toast({
                 variant: 'destructive',
-                title: 'Unauthorized device.',
+                title:'Error',
+                description: 'Operation Can only be done by Admin.',
             });
             return;
         }
@@ -160,7 +161,8 @@ const Sidebar = () => {
         if (deviceId !== adminDeviceId) {
             toast({
                 variant: 'destructive',
-                title: 'Unauthorized device.',
+                title:'Error',
+                description: 'Operation Can only be done by Admin.',
             });
             return;
         }
