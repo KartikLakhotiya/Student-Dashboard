@@ -404,7 +404,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                         </ChartContainer>
                     </CardContent>
                     <CardFooter className="flex-col gap-2 text-sm">
-                        <div className="flex items-center gap-2 font-medium leading-none">
+                        <div className="flex items-center gap-2 font-medium leading-none mt-11">
                         <TrendingUp className="h-4 w-4" /> Analysis of Courses using Radial Chart
                         </div>
                     </CardFooter>
