@@ -153,7 +153,7 @@ export function FetchStudent() {
                                             Full Name : <b>{student.fullname}</b>
                                         </p>
                                         <p className="text-lg">
-                                            Username : <b>{student.fullname}</b>
+                                            Username : <b>{student.username}</b>
                                         </p>
                                         <p className="text-lg">
                                             Email : <b>{student.email}</b>
