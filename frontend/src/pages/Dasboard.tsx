@@ -9,6 +9,14 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
+import { BarChart2, Boxes, TrendingUp } from "lucide-react"
+import { Bar, BarChart, CartesianGrid, XAxis, Pie, PieChart,RadialBar, RadialBarChart } from "recharts"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+} from "@/components/ui/chart"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -24,7 +32,6 @@ import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { AlignJustify, LucideCircleUser } from "lucide-react"
 import { motion } from "framer-motion";
-import { Chart } from "react-google-charts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 import { Label } from "../components/ui/label"
 import { Student } from "@/types/types";
@@ -77,50 +84,80 @@ export function Dashboard({ className, ...props }: CardProps) {
     ]
 
     // bar chart
-    const data = [
-        [
-            "",
-            "",
-            { role: "style" },
-            {
-                sourceColumn: 0,
-                role: "annotation",
-                type: "string",
-                calc: "stringify",
-            },
-        ],
-        ["MCA", MCA_Count.length, "#1d317e", null],
-        ["B.Tech", btech_Count.length, "#105a51", null],
-        ["MBA Tech", mbatech_Count.length, "#794f16", null],
-    ];
+    const bar_charData = [
+        { browser: "chrome", visitors: MCA_Count.length, fill: "var(--color-chrome)" },
+        { browser: "safari", visitors: btech_Count.length, fill: "var(--color-safari)" },
+        { browser: "firefox", visitors: mbatech_Count.length, fill: "var(--color-firefox)" }
+    ]
 
-    const options = {
-        title: "Courses Count in Bar Graph",
-        width: 400,
-        height: 400,
-        bar: { groupWidth: "95%" },
-        legend: { position: "none" },
-    };
+    const bar_chartConfig = {
+        visitors: {
+            label: "Count",
+          },
+          chrome: {
+            label: "MCA",
+            color: "hsl(var(--chart-1))",
+          },
+          safari: {
+            label: "B.Tech",
+            color: "hsl(var(--chart-2))",
+          },
+          firefox: {
+            label: "MBA Tech",
+            color: "hsl(var(--chart-3))",
+          },
+    } satisfies ChartConfig
 
     // pie chart
-    const pie_data = [
-        ["Course", "Courses per Student"],
-        ["MCA", MCA_Count.length],
-        ["B.Tech", btech_Count.length],
-        ["MBA Tech", mbatech_Count.length]
-    ];
 
-    const pie_options = {
-        title: "Analysis Of Courses Taken By Students",
-    };
+    const pie_chartData = [
+        { browser: "chrome", visitors: MCA_Count.length, fill: "var(--color-chrome)" },
+        { browser: "safari", visitors: btech_Count.length, fill: "var(--color-safari)" },
+        { browser: "firefox", visitors: mbatech_Count.length, fill: "var(--color-firefox)" }
+    ]
 
-    // column chart
-    const column_data = [
-        ["Element", "Courses", { role: "style" }],
-        ["MCA", MCA_Count.length, "#b87333"],
-        ["B.Tech", btech_Count.length, "silver"],
-        ["MBA Tech", mbatech_Count.length, "gold"]
-    ];
+    const pie_chartConfig = {
+        visitors: {
+            label: "Course Count",
+          },
+          chrome: {
+            label: "MCA",
+            color: "hsl(var(--chart-1))",
+          },
+          safari: {
+            label: "B.Tech",
+            color: "hsl(var(--chart-2))",
+          },
+          firefox: {
+            label: "MBA Tech",
+            color: "hsl(var(--chart-3))",
+          },
+    } satisfies ChartConfig
+
+    // radial chart
+    const chartData = [
+        { browser: "chrome", visitors: MCA_Count.length, fill: "var(--color-chrome)" },
+        { browser: "safari", visitors: btech_Count.length, fill: "var(--color-safari)" },
+        { browser: "firefox", visitors: mbatech_Count.length, fill: "var(--color-firefox)" }
+    ]
+
+    const chartConfig = {
+        visitors: {
+            label: "Course Count",
+          },
+          chrome: {
+            label: "MCA",
+            color: "hsl(var(--chart-1))",
+          },
+          safari: {
+            label: "B.Tech",
+            color: "hsl(var(--chart-2))",
+          },
+          firefox: {
+            label: "MBA Tech",
+            color: "hsl(var(--chart-3))",
+          },
+    } satisfies ChartConfig
 
     useEffect(() => {
         fetchAll();
@@ -205,7 +242,7 @@ export function Dashboard({ className, ...props }: CardProps) {
                         <CardTitle className="text-center">Student Credentials</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-4 h-[400px] overflow-y-auto"> {/* Set a fixed height and enable vertical scrolling */}
-                        
+
                         <div className="flex space-x-4 rounded-md border p-4">
                             <Table className="w-full">
                                 <TableHeader>
@@ -279,35 +316,100 @@ export function Dashboard({ className, ...props }: CardProps) {
             <div className="w-max lg:w-max h-[430px] lg:ml-14 lg:flex lg:justify-between mb-20">
 
                 {/* Bar Chart */}
-                <Card className="w-max lg:w-max h-[430px] lg:ml-8 p-3 mt-8 hover:scale-110 transition-scale-90 duration-300 ease-in-out">
-                    <Chart
-                        chartType="BarChart"
-                        width="100%"
-                        height="100%"
-                        data={data}
-                        options={options}
-                    />
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 p-3 mt-8 ">
+                    <CardHeader>
+                        <CardTitle className="mr-auto ml-auto">Bar Chart</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ChartContainer config={bar_chartConfig} className="w-[350px] h-[270px]">
+                            <BarChart accessibilityLayer data={bar_charData}>
+                                <CartesianGrid vertical={false} />
+                                <XAxis
+                                    dataKey="browser"
+                                    tickLine={false}
+                                    tickMargin={10}
+                                    axisLine={false}
+                                    tickFormatter={(value) =>
+                                        bar_chartConfig[value as keyof typeof bar_chartConfig]?.label
+                                    }
+                                />
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel />}
+                                />
+                                <Bar
+                                    dataKey="visitors"
+                                    strokeWidth={2}
+                                    radius={8}
+                                    activeIndex={2}
+                                />
+                            </BarChart>
+                        </ChartContainer>
+                    </CardContent>
+                    <CardFooter className="flex-col gap-2 text-sm">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                        <BarChart2 className="h-4 w-4" /> Analysis of Courses using Bar Chart
+                        </div>
+                    </CardFooter>
                 </Card>
 
                 {/* Pie Chart */}
-                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col hover:scale-110 transition-scale-90 duration-300 ease-in-out">
-                    <Chart
-                        chartType="PieChart"
-                        data={pie_data}
-                        options={pie_options}
-                        width={"100%"}
-                        height={"400px"}
-                    />
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
+                    <CardHeader className="items-center pb-0">
+                        <CardTitle>Pie Chart</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-0">
+                        <ChartContainer
+                            config={pie_chartConfig}
+                            className="mx-auto aspect-square max-h-[290px] w-[350px]"
+                        >
+                            <PieChart>
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel />}
+                                />
+                                <Pie
+                                    data={pie_chartData}
+                                    dataKey="visitors"
+                                    nameKey="browser"
+                                    innerRadius={60}
+                                />
+                            </PieChart>
+                        </ChartContainer>
+                    </CardContent>
+                    <CardFooter className="flex-col gap-2 text-sm">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                        <Boxes className="h-4 w-4" /> Analysis of Courses taken using Pie Chart  
+                        </div>
+                    </CardFooter>
                 </Card>
 
-                {/* Column Chart */}
-                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col hover:scale-110 transition-scale-90 duration-300 ease-in-out">
-                    <Chart
-                        chartType="ColumnChart"
-                        width="100%"
-                        height="400px"
-                        data={column_data} />
+                {/* Radial Chart */}
+                <Card className="w-max lg:w-max h-[430px] lg:ml-8 mt-8 p-3 md:flex md:flex-col">
+                    <CardHeader className="items-center pb-0">
+                        <CardTitle>Radial Chart</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-0">
+                        <ChartContainer
+                            config={chartConfig}
+                            className="mx-auto aspect-square max-h-[250px] w-[350px]"
+                        >
+                            <RadialBarChart data={chartData} innerRadius={40} outerRadius={140} className="mt-6">
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel nameKey="browser" />}
+                                />
+                                <RadialBar dataKey="visitors" background />
+                            </RadialBarChart>
+                        </ChartContainer>
+                    </CardContent>
+                    <CardFooter className="flex-col gap-2 text-sm">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                        <TrendingUp className="h-4 w-4" /> Analysis of Courses using Radial Chart
+                        </div>
+                    </CardFooter>
                 </Card>
+
             </div>
         </motion.div>
 
