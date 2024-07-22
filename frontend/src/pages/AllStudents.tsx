@@ -37,10 +37,7 @@ export function AllStudents() {
     const [filteredStudents, setFilteredStudents] = useState<any>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const { toast } = useToast();
-    const [fullname, setFullname] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [course, setCourse] = useState("");
+    const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
     const adminDeviceId = import.meta.env.VITE_SECURE_ADMIN_TOKEN;
 
@@ -56,37 +53,35 @@ export function AllStudents() {
             }
         });
 
-        const data = response.json();
-        data.then((obj) => {
-            setAllStudents(obj);
-            setFilteredStudents(obj);
-        });
+        const data = await response.json();
+        setAllStudents(data);
+        setFilteredStudents(data);
         toast({
             variant: "success",
             title: "Data Fetched.",
         });
-    }
+    };
 
-    const editStudent = async (id: string) => {
+    const editStudent = async (id: string, fullname: string, username: string, email: string, course: string) => {
         const deviceId = localStorage.getItem("device_id");
         if (deviceId !== adminDeviceId) {
             toast({
                 variant: 'destructive',
                 title:'Error',
-                description: 'Operation Can only be done by Admin.',
+                description: 'Operation can only be done by Admin.',
             });
             return;
         }
 
         // fullname validation
         if (fullname.trim() !== "") {
-            var number = /[0-9]/.test(fullname)
+            var number = /[0-9]/.test(fullname);
             if (number) {
                 toast({
                     variant: 'destructive',
                     title: 'Fullname cannot contain any numbers.'
-                })
-                return
+                });
+                return;
             }
             const specialChar1 = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(fullname);
             if (specialChar1) {
@@ -110,7 +105,7 @@ export function AllStudents() {
             }
         }
 
-        // email Validation
+        // email validation
         if (email.trim() !== "") {
             var atIdx = email.indexOf("@");
             var dotIdx = email.indexOf(".");
@@ -128,10 +123,10 @@ export function AllStudents() {
         });
 
         const data = {
-            "fullname": fullname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
-            "username": username.toLowerCase(),
-            "email": email.toLowerCase(),
-            "course": course
+            fullname: fullname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+            username: username.toLowerCase(),
+            email: email.toLowerCase(),
+            course: course
         };
 
         const response = await fetch(`https://student-dashboard-ssei.onrender.com/api/auth/edit/${id}`, {
@@ -147,6 +142,7 @@ export function AllStudents() {
                 variant: "success",
                 title: "Student Edited.",
             });
+            fetchAll();
         } else {
             console.log(`error`);
             toast({
@@ -154,9 +150,7 @@ export function AllStudents() {
                 title: "Error Occurred.",
             });
         }
-
-        fetchAll();
-    }
+    };
 
     const deleteStudent = async (id: string) => {
         const deviceId = localStorage.getItem("device_id");
@@ -164,7 +158,7 @@ export function AllStudents() {
             toast({
                 variant: 'destructive',
                 title:'Error',
-                description: 'Operation Can only be done by Admin.',
+                description: 'Operation can only be done by Admin.',
             });
             return;
         }
@@ -254,7 +248,7 @@ export function AllStudents() {
                         </TableHeader>
 
                         <TableBody>
-                            {filteredStudents.map((item: Student, index: number) => (
+                            {filteredStudents.map((item: any, index: number) => (
                                 <TableRow key={item._id}>
                                     <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                     <TableCell className="font-medium w-max">{item.fullname}</TableCell>
@@ -264,48 +258,50 @@ export function AllStudents() {
                                     <TableCell className="text-center">
                                         <AlertDialog>
                                             <AlertDialogTrigger asChild>
-                                                <Button variant="link" className="text-green-400">Edit</Button>
+                                                <Button variant="link" className="text-green-400" onClick={() => setSelectedStudent(item)}>Edit</Button>
                                             </AlertDialogTrigger>
-                                            <AlertDialogContent>
-                                                <AlertDialogHeader>
-                                                    <AlertDialogTitle className="text-2xl mb-4">Edit Student
-                                                        <AlertDialogDescription1>
-                                                            <p>Student ID : {item._id}</p>
-                                                        </AlertDialogDescription1>
-                                                    </AlertDialogTitle>
-                                                    <AlertDialogDescription className="sm:text-left">
-                                                        <div className="flex flex-col space-y-1.5 mb-4">
-                                                            <Label htmlFor="name">Full Name</Label>
-                                                            <Input placeholder="Enter Your Full Name" value={item.fullname} onChange={(e) => setFullname(e.target.value)} />
-                                                        </div>
-                                                        <div className="flex flex-col space-y-1.5 mb-4">
-                                                            <Label htmlFor="name">Username</Label>
-                                                            <Input placeholder="Enter Your Username" value={item.username} onChange={(e) => setUsername(e.target.value)} />
-                                                        </div>
-                                                        <div className="flex flex-col space-y-1.5 mb-4">
-                                                            <Label htmlFor="name">Email</Label>
-                                                            <Input placeholder="Enter Your New Email" value={item.email} onChange={(e) => setEmail(e.target.value)} />
-                                                        </div>
-                                                        <div className="flex flex-col space-y-1.5 mb-4">
-                                                            <Label htmlFor="name">Course</Label>
-                                                            <Select onValueChange={(value) => setCourse(value)} value={item.course}>
-                                                                <SelectTrigger id="framework">
-                                                                    <SelectValue placeholder="Select" />
-                                                                </SelectTrigger>
-                                                                <SelectContent position="popper">
-                                                                    <SelectItem value="MCA">MCA</SelectItem>
-                                                                    <SelectItem value="B.Tech">B.Tech</SelectItem>
-                                                                    <SelectItem value="MBA Tech">MBA Tech</SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                        </div>
-                                                    </AlertDialogDescription>
-                                                </AlertDialogHeader>
-                                                <AlertDialogFooter>
-                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                    <AlertDialogAction onClick={() => editStudent(item._id)}>Edit</AlertDialogAction>
-                                                </AlertDialogFooter>
-                                            </AlertDialogContent>
+                                            {selectedStudent && selectedStudent._id === item._id && (
+                                                <AlertDialogContent>
+                                                    <AlertDialogHeader>
+                                                        <AlertDialogTitle className="text-2xl mb-4">Edit Student
+                                                            <AlertDialogDescription1>
+                                                                <p>Student ID : {item._id}</p>
+                                                            </AlertDialogDescription1>
+                                                        </AlertDialogTitle>
+                                                        <AlertDialogDescription className="sm:text-left">
+                                                            <div className="flex flex-col space-y-1.5 mb-4">
+                                                                <Label htmlFor="name">Full Name</Label>
+                                                                <Input placeholder="Enter Your Full Name" value={selectedStudent.fullname} onChange={(e) => setSelectedStudent({ ...selectedStudent, fullname: e.target.value })} />
+                                                            </div>
+                                                            <div className="flex flex-col space-y-1.5 mb-4">
+                                                                <Label htmlFor="name">Username</Label>
+                                                                <Input placeholder="Enter Your Username" value={selectedStudent.username} onChange={(e) => setSelectedStudent({ ...selectedStudent, username: e.target.value })} />
+                                                            </div>
+                                                            <div className="flex flex-col space-y-1.5 mb-4">
+                                                                <Label htmlFor="name">Email</Label>
+                                                                <Input placeholder="Enter Your New Email" value={selectedStudent.email} onChange={(e) => setSelectedStudent({ ...selectedStudent, email: e.target.value })} />
+                                                            </div>
+                                                            <div className="flex flex-col space-y-1.5 mb-4">
+                                                                <Label htmlFor="name">Course</Label>
+                                                                <Select onValueChange={(value) => setSelectedStudent({ ...selectedStudent, course: value })} value={selectedStudent.course}>
+                                                                    <SelectTrigger id="framework">
+                                                                        <SelectValue placeholder="Select" />
+                                                                    </SelectTrigger>
+                                                                    <SelectContent position="popper">
+                                                                        <SelectItem value="MCA">MCA</SelectItem>
+                                                                        <SelectItem value="B.Tech">B.Tech</SelectItem>
+                                                                        <SelectItem value="MBA Tech">MBA Tech</SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                            </div>
+                                                        </AlertDialogDescription>
+                                                    </AlertDialogHeader>
+                                                    <AlertDialogFooter>
+                                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                        <AlertDialogAction onClick={() => editStudent(item._id, selectedStudent.fullname, selectedStudent.username, selectedStudent.email, selectedStudent.course)}>Edit</AlertDialogAction>
+                                                    </AlertDialogFooter>
+                                                </AlertDialogContent>
+                                            )}
                                         </AlertDialog>
                                     </TableCell>
                                     <TableCell className="text-center">
