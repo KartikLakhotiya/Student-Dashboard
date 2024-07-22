@@ -248,7 +248,7 @@ export function AllStudents() {
                         </TableHeader>
 
                         <TableBody>
-                            {filteredStudents.map((item: any, index: number) => (
+                            {filteredStudents.map((item: Student, index: number) => (
                                 <TableRow key={item._id}>
                                     <TableCell className="font-medium w-max">{index + 1}</TableCell>
                                     <TableCell className="font-medium w-max">{item.fullname}</TableCell>
