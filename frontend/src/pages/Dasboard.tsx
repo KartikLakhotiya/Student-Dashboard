@@ -45,7 +45,7 @@ export function Dashboard({ className, ...props }: CardProps) {
     const [selectedCourse, setSelectedCourse] = useState<string>("MCA");
 
     const fetchAll = async () => {
-        const response = await fetch('https://student-dashboard-ssei.onrender.com/api/auth/all', {
+        const response = await fetch('https://student-dashboard-cfg7.onrender.com/api/auth/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

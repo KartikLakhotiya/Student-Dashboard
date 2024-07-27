@@ -53,7 +53,7 @@ export function FetchStudent() {
         };
 
         const response = await fetch(
-            "https://student-dashboard-ssei.onrender.com/api/auth/fetch",
+            "https://student-dashboard-cfg7.onrender.com/api/auth/fetch",
             {
                 method: "POST",
                 headers: {
