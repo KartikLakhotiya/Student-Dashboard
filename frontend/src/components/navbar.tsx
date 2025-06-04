@@ -48,7 +48,7 @@ const Navbar = () => {
                     </button>
                     <div className={`${isOpen ? 'block' : 'hidden'} w-full lg:block lg:w-auto`} id="navbar-default">
                         <div className="flex flex-col lg:flex-row lg:items-center">
-                            <ul className="font-medium flex flex-col p-4 lg:p-0 mt-4 rounded-lg  lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0  lg:dark:bg-gray-900 dark:border-gray-700 mr-[21rem] lg:w-max">
+                            <ul className="font-medium flex flex-col p-4 lg:p-0 mt-4 rounded-lg  lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0  lg:dark:bg-gray-900 dark:border-gray-700 lg:w-max">
                                 <li>
                                     <Link to='/'><Button variant="outline" onClick={() => setIsOpen(false)}>HOME</Button></Link>
                                 </li>
@@ -64,9 +64,9 @@ const Navbar = () => {
                                 {admin ? <li>
                                     <Link to='/admin'><Button variant="outline" onClick={() => setIsOpen(false)}>ADMIN</Button></Link>
                                 </li> : ""}
+                                <ModeToggle />
                             </ul>
                             <div className="ml-auto md:ml-0">
-                                <ModeToggle />
                             </div>
                         </div>
                     </div>
