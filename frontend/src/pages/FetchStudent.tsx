@@ -90,12 +90,13 @@ export function FetchStudent() {
 
 
     return (
-        <motion.div
+        <div className="overflow-y-scroll">
+            <Navbar />
+            <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}
+            transition={{ duration: 0.5 }}
         >
-            <Navbar />
             <div className="sm:flex sm:mx-0 lg:flex-row lg:mx-48">
                 <Card className="w-[430px] mr-auto ml-auto mt-8">
                     <CardHeader>
@@ -169,5 +170,6 @@ export function FetchStudent() {
                 )}
             </div>
         </motion.div>
+        </div>
     );
 }

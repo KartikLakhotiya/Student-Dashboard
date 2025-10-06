@@ -30,7 +30,7 @@ import {
 
 import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
-import { AlignJustify, LucideCircleUser } from "lucide-react"
+import { AlignJustify, LucideCircleUser, Loader2 } from "lucide-react"
 import { motion } from "framer-motion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 import { Label } from "../components/ui/label"
@@ -43,20 +43,26 @@ export function Dashboard({ className, ...props }: CardProps) {
 
     const [allStudents, setAllStudents] = useState<any>([]);
     const [selectedCourse, setSelectedCourse] = useState<string>("MCA");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchAll = async () => {
-        const response = await fetch('https://student-dashboard-cfg7.onrender.com/api/auth/all', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        setIsLoading(true);
+        try {
+            const response = await fetch('https://student-dashboard-cfg7.onrender.com/api/auth/all', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        const data = response.json()
-        data.then((obj) => {
-            setAllStudents(obj)
-            // console.log(obj)
-        })
+            const data = await response.json();
+            setAllStudents(data);
+            // console.log(data)
+        } catch (error) {
+            console.error('Error fetching students:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const MCA_Count = allStudents.filter((item: { course: string; }) => item.course === 'MCA');
@@ -165,12 +171,21 @@ export function Dashboard({ className, ...props }: CardProps) {
 
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-        >
+        <div className="">
             <Navbar />
+            {isLoading ? (
+                <div className="flex justify-center items-center min-h-screen">
+                    <div className="flex flex-col items-center space-y-4">
+                        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+                        {/* <p className="text-lg font-medium text-muted-foreground">Loading dashboard...</p> */}
+                    </div>
+                </div>
+            ) : (
+                <motion.div
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
             {/* Top Div */}
             <div className="flex flex-col lg:flex-row lg:mx-14 lg:ml-20 lg:mt-5 mb-8 p-1">
 
@@ -412,7 +427,7 @@ export function Dashboard({ className, ...props }: CardProps) {
 
             </div>
         </motion.div>
-
-
+            )}
+        </div>
     )
 }

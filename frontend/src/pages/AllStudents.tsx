@@ -206,12 +206,13 @@ export function AllStudents() {
     }, [searchTerm, allStudents]);
 
     return (
-        <motion.div
+        <div className="">
+            <Navbar />
+            <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}
+            transition={{ duration: 0.5 }}
         >
-            <Navbar />
             <div className="">
                 <h1 className="flex flex-col items-center justify-center text-4xl mt-4 font-bold ">ALL STUDENTS</h1>
                 <div className="flex justify-center mt-4">
@@ -337,5 +338,6 @@ export function AllStudents() {
                 </motion.div>
             </div>
         </motion.div>
+        </div>
     );
 }

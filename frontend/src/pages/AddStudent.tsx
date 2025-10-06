@@ -183,12 +183,13 @@ export function AddStudent() {
     }, [])
 
     return (
-        <motion.div
+        <div className="overflow-y-scroll">
+            <Navbar />
+            <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}
+            transition={{ duration: 0.5 }}
         >
-            <Navbar />
             <Card className="w-[430px] mr-auto ml-auto mt-4 mb-0 ">
                 <CardHeader>
                     <CardTitle>Create Student</CardTitle>
@@ -232,5 +233,6 @@ export function AddStudent() {
                 </CardContent>
             </Card>
         </motion.div>
+        </div>
     )
 }
