@@ -206,7 +206,7 @@ export function AllStudents() {
     }, [searchTerm, allStudents]);
 
     return (
-        <div className="">
+        <div className="min-h-[110vh]">
             <Navbar />
             <motion.div
             initial={{ opacity: 0, y: 0 }}
