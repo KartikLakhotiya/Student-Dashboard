@@ -36,6 +36,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Label } from "../components/ui/label"
 import { Student } from "@/types/types";
 import Navbar from "@/components/navbar";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -44,6 +46,7 @@ export function Dashboard({ className, ...props }: CardProps) {
     const [allStudents, setAllStudents] = useState<any>([]);
     const [selectedCourse, setSelectedCourse] = useState<string>("MCA");
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const { toast } = useToast();
 
     const fetchAll = async () => {
         setIsLoading(true);
@@ -55,11 +58,22 @@ export function Dashboard({ className, ...props }: CardProps) {
                 }
             });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
             setAllStudents(data);
             // console.log(data)
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error fetching students:', error);
+            
+            // Show error toast message
+            toast({
+                title: "Failed to Load Data",
+                description: "Unable to fetch student data. Please check your internet connection and try again.",
+                variant: "destructive",
+            });
         } finally {
             setIsLoading(false);
         }
@@ -428,6 +442,7 @@ export function Dashboard({ className, ...props }: CardProps) {
             </div>
         </motion.div>
             )}
+            <Toaster />
         </div>
     )
 }
